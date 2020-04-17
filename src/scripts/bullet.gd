@@ -11,7 +11,7 @@ var substances = ["lactose"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	aerodynamical_slowfactor = rand_range(0.1, 0.9)
+	aerodynamical_slowfactor = rand_range(0.5, 0.9)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

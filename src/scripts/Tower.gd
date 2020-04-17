@@ -16,8 +16,7 @@ func _on_FireTimer_timeout():
 	var bullet = Munition.instance()
 	add_child(bullet)
 	var direction = deg2rad(0)
-	bullet.position = get_node(".").position
-	bullet.scale = Vector2(0.1,0.1)
+	bullet.position = Vector2(0,0)
 	bullet.linear_velocity = Vector2(float(firespeed * bullet.aerodynamical_slowfactor), 0).rotated(direction)
 
 
