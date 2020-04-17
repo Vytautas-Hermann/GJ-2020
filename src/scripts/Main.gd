@@ -11,21 +11,17 @@ func _ready():
 func new_game():
 	score = 0
 	$SpawnTimer.start()
-	$FireTimer.start()
 
 func _on_SpawnTimer_timeout():
-	print("spawning enemy")
 	$EnemyPath/EnemySpawn.offset = randi()
 	var enemy = Enemy.instance()
 	add_child(enemy)
 	var direction = $EnemyPath/EnemySpawn.rotation + PI / 2
 	enemy.position = $EnemyPath/EnemySpawn.position
 	direction += rand_range(-PI / 4, PI / 4)
-	enemy.rotation = direction
-	enemy.linear_velocity = Vector2(enemy.speed, 0).rotated(direction)
+	#enemy.rotation = direction
+	enemy.get_node("RigidBody2D").linear_velocity = Vector2(enemy.speed, 0).rotated(direction)
 	
-func _on_FireTimer_timeout():
-	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
