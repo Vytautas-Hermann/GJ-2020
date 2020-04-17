@@ -13,7 +13,6 @@ func new_game():
 	$SpawnTimer.start()
 
 func _on_SpawnTimer_timeout():
-	$EnemyPath/EnemySpawn.offset = randi()
 	var enemy = Enemy.instance()
 	add_child(enemy)
 	
