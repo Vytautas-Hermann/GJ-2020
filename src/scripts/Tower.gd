@@ -18,6 +18,7 @@ func _on_FireTimer_timeout():
 	var direction = deg2rad(0)
 	bullet.position = Vector2(0,0)
 	bullet.linear_velocity = Vector2(float(firespeed * bullet.aerodynamical_slowfactor), 0).rotated(direction)
+	bullet.set_scale(Vector2(0.2,0.2))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
