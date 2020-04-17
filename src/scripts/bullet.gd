@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 
 var nutrition_value = 100
 var aerodynamical_slowfactor = 0.5

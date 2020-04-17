@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 
 
 export var speed = 100
@@ -13,6 +13,7 @@ func _ready():
 
 
 func _on_Enemy_body_entered(_body):
+	print("collision")
 	saturation += _body.nutritional_value
 	print(saturation)
 	for substance in _body.substances:

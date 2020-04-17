@@ -28,4 +28,5 @@ rotation = 1.57086
 
 [node name="Tower" parent="." instance=ExtResource( 4 )]
 position = Vector2( 500, 500 )
+gravity = 0.0
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
