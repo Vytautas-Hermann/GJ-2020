@@ -36,7 +36,7 @@ var towers={
 func _ready():
 	$FireTimer.start()
 	set_type("pizza")
-	bullettype = type
+	bullettype = "pizza"
 	
 func set_type(t):
 	type = t

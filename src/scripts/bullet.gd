@@ -12,8 +12,7 @@ var bullets={
 		"nutrition_value": 100,
 		"aerodynamical_slowfactor": 1,
 		"substances": ["lactose", "gluten"],
-		"image": "", # for setting image dynamically
-		"shape": "circle", # same
+		"image": "Pizza.png",
 		"collider":{
 			"position":{
 				"x": 0,
@@ -39,8 +38,7 @@ var bullets={
 		"nutrition_value": 50,
 		"aerodynamical_slowfactor": 0.75,
 		"substances": [],
-		"image": "", # for setting image dynamically
-		"shape": "circle", # same
+		"image": "Reis.png",
 		"collider":{
 			"position":{
 				"x": 0,
@@ -66,8 +64,7 @@ var bullets={
 		"nutrition_value": 75,
 		"aerodynamical_slowfactor": 0.5,
 		"substances": ["gluten"],
-		"image": "", # for setting image dynamically
-		"shape": "circle", # same
+		"image": "noodle.png",
 		"collider":{
 			"position":{
 				"x": 0,
@@ -103,6 +100,7 @@ func set_type(t):
 	$CollisionShape2D.position.y = bullets[type]['collider']['position']['y']
 	$CollisionShape2D.scale.x = bullets[type]['collider']['scale']['x']
 	$CollisionShape2D.scale.y = bullets[type]['collider']['scale']['y']
+	$AnimatedSprite.set_animation(type)
 	$AnimatedSprite.position.x = bullets[type]['sprite']['position']['x']
 	$AnimatedSprite.position.y = bullets[type]['sprite']['position']['y']
 	$AnimatedSprite.scale.x = bullets[type]['sprite']['scale']['x']

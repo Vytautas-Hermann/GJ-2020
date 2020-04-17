@@ -1,15 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/scripts/bullet.gd" type="Script" id=1]
-[ext_resource path="res://src/images/Pizza.png" type="Texture" id=2]
+[ext_resource path="res://src/images/Reis.png" type="Texture" id=2]
+[ext_resource path="res://src/images/noodle.png" type="Texture" id=3]
+[ext_resource path="res://src/images/Pizza.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "pizza",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "default",
+"name": "rice",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "noodle",
 "speed": 5.0
 } ]
 
@@ -27,3 +39,4 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 2 )
+animation = "noodle"
