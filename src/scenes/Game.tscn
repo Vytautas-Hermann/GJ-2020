@@ -14,47 +14,70 @@ path = ExtResource( 1 )
 table = ExtResource( 3 )
 kit = ExtResource( 2 )
 
-[node name="Overlay" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+smoothing_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Overlay"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 script = ExtResource( 4 )
 
-[node name="$Text" type="RichTextLabel" parent="Overlay/CanvasLayer"]
+[node name="MoneyText" type="RichTextLabel" parent="Camera2D/CanvasLayer"]
 margin_left = 24.0
 margin_top = 24.0
-margin_right = 200.0
-margin_bottom = 144.0
-text = "$$$"
+margin_right = 128.0
+margin_bottom = 64.0
+text = "Money"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthText" type="RichTextLabel" parent="Overlay/CanvasLayer"]
-margin_left = 888.0
+[node name="HealthText" type="RichTextLabel" parent="Camera2D/CanvasLayer"]
+margin_left = 160.0
 margin_top = 24.0
-margin_right = 1088.0
-margin_bottom = 72.0
+margin_right = 256.0
+margin_bottom = 64.0
 text = "Health"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreText" type="RichTextLabel" parent="Overlay/CanvasLayer"]
-margin_left = 1784.0
+[node name="ScoreText" type="RichTextLabel" parent="Camera2D/CanvasLayer"]
+margin_left = 288.0
 margin_top = 24.0
-margin_right = 1896.0
-margin_bottom = 104.0
+margin_right = 384.0
+margin_bottom = 64.0
 text = "Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuButton" type="MenuButton" parent="Overlay/CanvasLayer"]
-margin_left = 864.0
-margin_top = 40.0
-margin_right = 952.0
-margin_bottom = 80.0
+[node name="MenuButton" type="MenuButton" parent="Camera2D/CanvasLayer"]
+margin_left = 1696.0
+margin_top = 24.0
+margin_right = 1760.0
+margin_bottom = 64.0
 text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuildMenue" type="MenuButton" parent="Camera2D/CanvasLayer"]
+margin_left = 1824.0
+margin_top = 24.0
+margin_right = 1888.0
+margin_bottom = 64.0
+text = "Built"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Camera2D/CanvasLayer"]
+margin_left = 1768.0
+margin_top = 1024.0
+margin_right = 1888.0
+margin_bottom = 1048.0
+text = "Swap Location"
 __meta__ = {
 "_edit_use_anchors_": false
 }
