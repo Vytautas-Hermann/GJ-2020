@@ -3,7 +3,7 @@ extends Area2D
 
 var speed
 var type = "Prof"
-var allergies = ["lactose", "gluten"]
+var allergies = ["gluten"]
 var saturation = 0
 var hunger
 var v
@@ -20,16 +20,20 @@ func _ready():
 func _process(delta):
 	position += v * delta
 
+func get_type():
+	return "enemy"
 
 func _on_Enemy_area_entered(area):
-	print(area.get_name())
-	#saturation += area.nutritional_value
-	#print(saturation)
-	#for substance in area.substances:
-	#	if substance in allergies:
-	#		area.queue_free()
-	#		queue_free()
-	#area.queue_free()
+	if area.get_type() == "bullet":
+		saturation += area.get_nv()
+		print(saturation)
+		for substance in area.substances:
+			if substance in allergies:
+				area.queue_free()
+				queue_free()
+		area.queue_free()
+		if saturation > hunger:
+			queue_free()
 	
 
 
