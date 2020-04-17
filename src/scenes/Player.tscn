@@ -1,15 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/rabbit-removebg.png" type="Texture" id=1]
+[ext_resource path="res://src/scenes/Player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 43.2352, 24.6125 )
+extents = Vector2( 104, 176 )
 
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( 112, 272 )
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="rabbit-removebg" type="Sprite" parent="."]
-position = Vector2( -13.202, -4.15692 )
+position = Vector2( -24, -16 )
 texture = ExtResource( 1 )
