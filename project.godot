@@ -16,13 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Game_Jam_04_2020"
+run/main_scene="res://src/scenes/Title_Screen.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/size/test_height=2748
 
 [rendering]
 

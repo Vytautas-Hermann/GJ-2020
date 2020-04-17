@@ -6,7 +6,7 @@ func _ready():
 	get_node("Button3").connect("pressed", self, "_on_quit")
 
 func _on_new_game():
-	pass
+	get_tree().change_scene("res://src/scenes/Game.tscn")
 
 func _on_credits():
 	get_tree().change_scene("res://src/scenes/Credits.tscn")
