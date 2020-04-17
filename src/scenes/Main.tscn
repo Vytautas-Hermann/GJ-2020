@@ -24,7 +24,7 @@ curve = SubResource( 1 )
 
 [node name="EnemySpawn" type="PathFollow2D" parent="EnemyPath"]
 position = Vector2( 1915.97, 1.41116 )
-rotation = 1.57086
+rotation = 1.57083
 
 [node name="Tower" parent="." instance=ExtResource( 4 )]
 position = Vector2( 500, 500 )

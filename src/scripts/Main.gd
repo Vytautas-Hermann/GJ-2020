@@ -16,11 +16,6 @@ func _on_SpawnTimer_timeout():
 	$EnemyPath/EnemySpawn.offset = randi()
 	var enemy = Enemy.instance()
 	add_child(enemy)
-	var direction = $EnemyPath/EnemySpawn.rotation + PI / 2
-	enemy.position = $EnemyPath/EnemySpawn.position
-	direction += rand_range(-PI / 4, PI / 4)
-	#enemy.rotation = direction
-	enemy.linear_velocity = Vector2(enemy.speed, 0).rotated(direction)
 	
 
 
