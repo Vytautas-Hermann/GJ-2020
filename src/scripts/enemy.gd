@@ -20,15 +20,16 @@ func _ready():
 func _process(delta):
 	position += v * delta
 
-func get_type():
+func get_tag():
 	return "enemy"
 
 func _on_Enemy_area_entered(area):
-	if area.get_type() == "bullet":
+	if area.get_tag() == "bullet":
 		saturation += area.get_nv()
 		print(saturation)
 		for substance in area.substances:
 			if substance in allergies:
+				print("killed someone because of " + substance)
 				area.queue_free()
 				queue_free()
 		area.queue_free()

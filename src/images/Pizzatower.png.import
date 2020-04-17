@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/noodle.png-65ae83ddf0a81a2c9c623f9effb6767e.stex"
+path="res://.import/Pizzatower.png-50cba593fcc3b328af5a1ed822d040ab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://noodle.png"
-dest_files=[ "res://.import/noodle.png-65ae83ddf0a81a2c9c623f9effb6767e.stex" ]
+source_file="res://src/images/Pizzatower.png"
+dest_files=[ "res://.import/Pizzatower.png-50cba593fcc3b328af5a1ed822d040ab.stex" ]
 
 [params]
 
