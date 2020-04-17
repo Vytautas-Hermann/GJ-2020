@@ -8,20 +8,15 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "KinematicBody2D",
-"class": "Actor",
-"language": "GDScript",
-"path": "res://src/scenes/Actor.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Actor": ""
+
 }
 
 [application]
 
 config/name="Game_Jam_04_2020"
-run/main_scene="res://src/scenes/Player.tscn"
+run/main_scene="res://src/scenes/Title_Screen.tscn"
 config/icon="res://icon.png"
 
 [display]
