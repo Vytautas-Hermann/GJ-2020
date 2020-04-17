@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-export var speed = 10
+export var speed = 100
 var type = "Prof"
 var allergies = ["lactose", "gluten"]
 var saturation = 0
