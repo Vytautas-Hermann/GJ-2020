@@ -4,6 +4,7 @@ var munition = "res://src/prefab/bullet.tscn"
 var firespeed = 2000
 var reload = 1 #for changing firerate -> change firetimer waittime
 var type
+var bullettype
 var towers={
 	"pizza":{
 		"image": "",
@@ -35,6 +36,7 @@ var towers={
 func _ready():
 	$FireTimer.start()
 	set_type("pizza")
+	bullettype = type
 	
 func set_type(t):
 	type = t
@@ -47,10 +49,13 @@ func set_type(t):
 	$AnimatedSprite.scale.x = towers[type]['sprite']['scale']['x']
 	$AnimatedSprite.scale.y = towers[type]['sprite']['scale']['y']
 	
+func set_bullettype(t):
+	bullettype = t
+
 
 func _on_FireTimer_timeout():
 	var bullet = load(munition).instance()
-	bullet.set_type(type)
+	bullet.set_type(bullettype)
 	bullet.speed = firespeed
 	add_child(bullet)
 
