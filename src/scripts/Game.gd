@@ -1,7 +1,6 @@
 extends Node2D
-export (PackedScene) var Enemy
 
-
+var mob = "res://src/prefab/Enemy.tscn"
 
 func _ready():
 	new_game()
@@ -11,7 +10,7 @@ func new_game():
 	$SpawnTimer.start()
 
 func _on_SpawnTimer_timeout():
-	var enemy = Enemy.instance()
+	var enemy = load(mob).instance()
 	enemy.rotation = Vector2(0,-1).angle()
 	add_child(enemy)
 
