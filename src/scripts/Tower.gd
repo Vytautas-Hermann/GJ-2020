@@ -41,8 +41,6 @@ var lvl = [0, 0, 0, 0]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$FireTimer.start()
-	set_type("pizza")
-	bullettype = "pizza"
 	set_reach(reach)
 	set_reload(reload)
 	_init_prod()
