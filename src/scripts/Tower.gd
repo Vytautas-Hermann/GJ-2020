@@ -141,7 +141,6 @@ func _on_FireTimer_timeout():
 			bullet.direction = bullet.direction.normalized()
 			add_child(bullet)
 			available_bullets = []
-			bullet.set_deathTimer(0.2)
 			cl.storage[chosentype].erase(cl.storage[chosentype][0])
 			if chosentype == "Chips":
 				cl._update_bullet(0,-1)

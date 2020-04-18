@@ -26,9 +26,9 @@ var bullets={
 		}
 	},
 	"Rice":{
-		"vegan": false,
+		"vegan": true,
 		"aerodynamical_slowfactor": 0.75,
-		"substances": ["fish"],
+		"substances": [],
 		"sprite":{
 			"position":{
 				"x": 0,
@@ -139,6 +139,7 @@ func set_type(t):
 	substances = bullets[type]['substances']
 	aerodynamical_slowfactor = bullets[type]['aerodynamical_slowfactor']
 	vegan = bullets[type]['vegan']
+	set_deathTimer(3-aerodynamical_slowfactor)
 
 func set_deathTimer(t):
 	$DeathTimer.wait_time = t
