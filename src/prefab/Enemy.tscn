@@ -1,13 +1,43 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://src/images/avatar3.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/enemy.gd" type="Script" id=2]
+[ext_resource path="res://src/images/avatar1.png" type="Texture" id=3]
+[ext_resource path="res://src/images/avatar2.png" type="Texture" id=4]
+[ext_resource path="res://src/images/avatar6.png" type="Texture" id=5]
+[ext_resource path="res://src/images/avatar5.png" type="Texture" id=6]
+[ext_resource path="res://src/images/avatar4.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "vegan0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "normal0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "vegan1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "normal2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "default",
+"name": "normal1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "normal3",
 "speed": 5.0
 } ]
 
@@ -20,7 +50,9 @@ collision_mask = 14
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
+animation = "normal3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 3, 3 )

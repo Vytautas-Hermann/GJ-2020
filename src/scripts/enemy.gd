@@ -6,6 +6,7 @@ var available_allergies = {
 	"diabetis": 0.005, 
 	"fish": 0.125
 	}
+var vegan_prob = 0.2
 var speed
 var type
 var allergies = []
@@ -25,8 +26,10 @@ func _ready():
 	for allergy in available_allergies:
 		if rand_range(0,1) < available_allergies[allergy]:
 			allergies.append(allergy)
-	if rand_range(0,1) < 0.5:
+		$AnimatedSprite.set_animation("normal"+str(int(rand_range(0,4))))
+	if rand_range(0,1) < vegan_prob:
 		vegan=true
+		$AnimatedSprite.set_animation("vegan"+str(int(rand_range(0,2))))
 	position = Vector2(0,400)
 	speed = rand_range(50,300)
 	screen_size = get_viewport_rect().size
@@ -54,6 +57,7 @@ func _process(delta):
 		if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
 			direction = newDirection
 			v = Vector2(speed, 1)
+			rotation = Vector2(0,-1).angle()
 		else:
 			# links
 			i = nextField.x
@@ -62,6 +66,7 @@ func _process(delta):
 			if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
 				direction = newDirection
 				v = Vector2(-speed, -1)
+				rotation = Vector2(0,1).angle()
 			else:
 				# unten
 				i = nextField.x + 1
@@ -70,6 +75,7 @@ func _process(delta):
 				if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
 					direction = newDirection
 					v = Vector2(1, speed)
+					rotation = Vector2(1,0).angle()
 				else:
 					# oben
 					i = nextField.x -1
@@ -77,9 +83,9 @@ func _process(delta):
 					newDirection = Vector2(0, -1)
 					if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
 						#print(lastDirection)
-						print("new " + var2str(newDirection))
 						direction = newDirection
 						v = Vector2(-1,-speed)
+						rotation = Vector2(-1,0).angle()
 	
 	position += v * delta
 
