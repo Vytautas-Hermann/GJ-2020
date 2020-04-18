@@ -174,6 +174,7 @@ func _update_bullet(idx, val):
 				storage['Soup'].append({"nv": mul, "price": 3.5})
 	else:
 		bullet[idx] += val
+		bulletCount += val
 	$BulletControl/Bullet.get_popup().set_item_text(idx, bulletName[idx] % bullet[idx])
 	$BulletControl/BulletText.text="%s" % bulletCount
 

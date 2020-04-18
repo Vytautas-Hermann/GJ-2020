@@ -38,6 +38,10 @@ func _ready():
 	position = Vector2(50,850)
 	direction = Vector2(1, 0)
 	v = Vector2(speed, 1)
+	
+	var lebensanzeige = Vector2(saturation/1000, 0.086)
+	$Lebensanzeige/Gruen.scale = lebensanzeige
+	
 
 func _process(delta):
 	var newPos = position + direction * delta

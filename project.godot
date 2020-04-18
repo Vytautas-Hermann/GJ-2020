@@ -23,11 +23,8 @@ config/icon="res://icon.png"
 
 window/size/width=1920
 window/size/height=1080
-<<<<<<< HEAD
-=======
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
->>>>>>> c34824ce8babf852f72f9a3f57cd12e277012012
 
 [rendering]
 
