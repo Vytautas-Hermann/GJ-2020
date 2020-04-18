@@ -5,7 +5,7 @@
 [ext_resource path="res://src/prefab/table.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scripts/menu.gd" type="Script" id=4]
 [ext_resource path="res://src/scripts/Game_Board.gd" type="Script" id=5]
-[ext_resource path="res://src/prefab/Flieband.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/prefab/Tower.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/prefab/Import.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/scripts/Game.gd" type="Script" id=8]
 [ext_resource path="res://src/prefab/Enemy.tscn" type="PackedScene" id=9]
@@ -29,7 +29,7 @@ smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 script = ExtResource( 4 )
-buildings = [ ExtResource( 6 ), null, null, ExtResource( 7 ) ]
+buildings = [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ) ]
 
 [node name="MoneyText" type="RichTextLabel" parent="Camera2D/CanvasLayer"]
 margin_left = 24.0
