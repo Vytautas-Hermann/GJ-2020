@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://src/prefab/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/prefab/Tower.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
-Enemy = ExtResource( 3 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 
 [node name="Tower" parent="." instance=ExtResource( 4 )]
 position = Vector2( 500, 500 )
+
+[node name="Tower2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1000, 500 )
+
+[node name="Tower3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1500, 500 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

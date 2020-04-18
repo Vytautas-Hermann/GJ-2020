@@ -5,6 +5,7 @@ export var money = 100
 var health = 100
 var maze = true
 var built = 0
+var cost = [10, 10, 10, 10]
 export var buildings = []
 export var bulletName = ["Chips: %s", "Rice: %s", "Salad: %s", "Burger: %s", 
 		"Pasta: %s", "Schnitzel: %s", "Soup: %s"]
@@ -46,8 +47,11 @@ func _swap():
 		maze=true
 
 func _change_money(var bal):
+	if money + bal < 0:
+		return false
 	money += bal
 	$MoneyText.text="Money: %s" % money
+	return true
 
 func _decrease_health(var loss):
 	health -= loss
@@ -60,27 +64,19 @@ func _increase_score(var add):
 func _set_maze_built():
 	for child in $BuildMenue.get_popup().items:
 		$BuildMenue.get_popup().remove_item(0)
-	$BuildMenue.get_popup().add_item("Tower")
+	$BuildMenue.get_popup().add_item("Tower: %s" % cost[0])
 	$BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
 
 func _set_kit_built():
 	for child in $BuildMenue.get_popup().items:
 		$BuildMenue.get_popup().remove_item(0)
-	$BuildMenue.get_popup().add_item("Beilage")
-	$BuildMenue.get_popup().add_item("Gericht")
-	$BuildMenue.get_popup().add_item("Import")
+	$BuildMenue.get_popup().add_item("Beilage: %s" % cost[1])
+	$BuildMenue.get_popup().add_item("Gericht: %s" % cost[2])
+	$BuildMenue.get_popup().add_item("Import: %s" % cost[3])
 	$BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
 
 func _on_build_pressed(id):
-	var item_name = $BuildMenue.get_popup().get_item_text(id)
-	if item_name == "Tower":
-		built = 2
-	if item_name == "Beilage":
-		built = 3
-	if item_name == "Gericht":
-		built = 4
-	if item_name == "Import":
-		built = 5
+	built = id
 
 func _init_roh():
 	for i in range(0, rohName.size()):
@@ -88,8 +84,8 @@ func _init_roh():
 
 func _update_roh(idx, val):
 	if val > 0:
-		_change_money(-val*rohCost[idx])
-	roh[idx] += val
+		if _change_money(-val*rohCost[idx]):
+			roh[idx] += val
 	$Roh.get_popup().set_item_text(idx, rohName[idx] % roh[idx])
 
 func _unhandled_input(event):
@@ -109,14 +105,22 @@ func _unhandled_input(event):
 						j+=1
 					if maze:
 						if get_node("/root/Game/Game_Board").get("caf")[j][i] == 0:
-							var bu = buildings[built-2].instance()
-							bu.position = Vector2(50 + i*100, 50 + j*100)
-							get_node("/root/Game/Game_Board").add_child(bu)
-							get_node("/root/Game/Game_Board").get("caf")[j][i] = built
+							if money - cost[built] > 0:
+								money -= cost[built]
+								cost[built] *= 1.5
+								_set_maze_built()
+								var bu = buildings[built].instance()
+								bu.position = Vector2(50 + i*100, 50 + j*100)
+								get_node("/root/Game/Game_Board").add_child(bu)
+								get_node("/root/Game/Game_Board").get("caf")[j][i] = 1
 					else:
 						if get_node("/root/Game/Game_Board").get("kitchen")[j][i] == 0:
-							var bu = buildings[built-2].instance()
-							bu.position = Vector2(50 + i*100, 1150 + j*100)
-							get_node("/root/Game/Game_Board").add_child(bu)
-							get_node("/root/Game/Game_Board").get("kitchen")[j][i] = built
+							if money - cost[built+1] > 0:
+								money -= cost[built+1]
+								cost[built+1] *= 1.5
+								_set_kit_built()
+								var bu = buildings[built+1].instance()
+								bu.position = Vector2(50 + i*100, 1150 + j*100)
+								get_node("/root/Game/Game_Board").add_child(bu)
+								get_node("/root/Game/Game_Board").get("kitchen")[j][i] = 1
 					built = 0

@@ -90,9 +90,8 @@ var bullets={
 
 
 func _ready():
-	aerodynamical_slowfactor = rand_range(0.5, 0.9)
 	screen_size = get_viewport_rect().size
-	direction = Vector2(-1,0)
+	$DeathTimer.start()
 
 func set_type(t):
 	type = t
@@ -109,6 +108,8 @@ func set_type(t):
 	nutrition_value = bullets[type]['nutrition_value']
 	aerodynamical_slowfactor = bullets[type]['aerodynamical_slowfactor']
 
+func set_deathTimer(t):
+	$DeathTimer.wait_time = t
 
 func get_tag():
 	return "bullet"
@@ -119,3 +120,7 @@ func get_nv():
 func _process(delta):
 	position += direction * speed * delta * aerodynamical_slowfactor
 
+
+
+func _on_DeathTimer_timeout():
+	queue_free()

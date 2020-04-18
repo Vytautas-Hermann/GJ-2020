@@ -23,6 +23,7 @@ func _ready():
 	for allergy in available_allergies:
 		if rand_range(0,1) < available_allergies[allergy]:
 			allergies.append(allergy)
+	position = Vector2(0,400)
 	speed = rand_range(100,200)
 	screen_size = get_viewport_rect().size
 	hunger = rand_range(20,200)
@@ -84,7 +85,6 @@ func get_tag():
 func _on_Enemy_area_entered(area):
 	if area.get_tag() == "bullet":
 		saturation += area.get_nv()
-		print(saturation)
 		for substance in area.substances:
 			if substance in allergies:
 				print("killed someone because of " + substance)

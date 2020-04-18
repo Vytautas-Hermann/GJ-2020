@@ -1,27 +1,30 @@
 extends Area2D
 
 var munition = "res://src/prefab/bullet.tscn"
-var firespeed = 2000
-var reload = 1 #for changing firerate -> change firetimer waittime
+var firespeed = 1000
+var reload = 1 
 var type
 var bullettype
+var reach
+var multishot = 10
+var available_bullets = []
 var towers={
 	"pizza":{
 		"image": "",
 		"collider":{
 			"position":{
-				"x": 23,
-				"y": 7
+				"x": 0,
+				"y": 0
 			},
 			"scale": {
-				"x": 5.5,
-				"y": 3
+				"x": 10,
+				"y": 10
 			}
 		},
 		"sprite":{
 			"position":{
-				"x": 30,
-				"y": 0
+				"x": 25,
+				"y": -20
 			},
 			"scale": {
 				"x": 0.5,
@@ -37,7 +40,23 @@ func _ready():
 	$FireTimer.start()
 	set_type("pizza")
 	bullettype = "pizza"
-	
+	set_reach(30)
+	set_reload(1.5)
+
+func set_reach(r):
+	reach = r
+	$CollisionShape2D.scale.x = reach
+	$CollisionShape2D.scale.y = reach
+
+
+func set_firespeed(s):
+	firespeed = s
+
+func set_reload(r):
+	reload = r
+	$FireTimer.wait_time = reload
+
+
 func set_type(t):
 	type = t
 	$CollisionShape2D.position.x = towers[type]['collider']['position']['x']
@@ -51,13 +70,45 @@ func set_type(t):
 	
 func set_bullettype(t):
 	bullettype = t
-
+func get_tag():
+	return "tower"
 
 func _on_FireTimer_timeout():
-	var bullet = load(munition).instance()
-	bullet.set_type(bullettype)
-	bullet.speed = firespeed
-	add_child(bullet)
+	var areas = get_overlapping_areas()
+	var enemies = []
+	for area in areas:
+		if area.get_tag() == "enemy":
+			enemies.append(area)
+	#get available bullets
+	for i in range(multishot):
+		if i < len(enemies):
+			var nv = 0
+			var enemy = enemies[i]
+			var bullet = load(munition).instance()
+			for i in bullet.bullets:
+				available_bullets.append(i)
+			if not len(available_bullets):
+				break
+			var chosentype = null #= available_bullets[int(rand_range(0,len(available_bullets)))]
+			for type in available_bullets:
+				for allergy in enemy.allergies: # implement preferences (vegan)
+					if allergy in bullet.bullets[type]['substances']:
+						continue
+					elif bullet.bullets[type]['nutrition_value'] > nv:
+						nv =  bullet.bullets[type]['nutrition_value']
+						chosentype = type
+			if not chosentype:
+				for type in available_bullets:
+					if bullet.bullets[type]['nutrition_value'] > nv:
+						nv =  bullet.bullets[type]['nutrition_value']
+						chosentype = type
+			bullet.set_type(chosentype)
+			bullet.speed = firespeed
+			bullet.direction = enemy.position - position
+			bullet.direction = bullet.direction.normalized()
+			add_child(bullet)
+			available_bullets = []
+			bullet.set_deathTimer(0.2)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
