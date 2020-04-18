@@ -154,7 +154,7 @@ func _update_bullet(idx, val):
 				bullet[idx] += val
 				storage['Soup'].append({"nv": mul, "price": 3.5})
 	else:
-		bullet[idx] -= 1
+		bullet[idx] += val
 	$Bullet.get_popup().set_item_text(idx, bulletName[idx] % bullet[idx])
 
 func _from_to(from, to, val):
@@ -195,7 +195,7 @@ func _unhandled_input(event):
 								var bu = buildings[built].instance()
 								bu.position = Vector2(50 + i*100, 50 + j*100)
 								get_node("/root/Game/Game_Board").add_child(bu)
-								get_node("/root/Game/Game_Board").get("caf")[j][i] = 1
+								get_node("/root/Game/Game_Board").get("caf")[j][i] = 3
 					else:
 						if get_node("/root/Game/Game_Board").get("kitchen")[j][i] == 0:
 							if money - cost[built+1] > 0:
@@ -205,5 +205,5 @@ func _unhandled_input(event):
 								var bu = buildings[built+1].instance()
 								bu.position = Vector2(50 + i*100, 1150 + j*100)
 								get_node("/root/Game/Game_Board").add_child(bu)
-								get_node("/root/Game/Game_Board").get("kitchen")[j][i] = 1
+								get_node("/root/Game/Game_Board").get("kitchen")[j][i] = 3
 					built = -1

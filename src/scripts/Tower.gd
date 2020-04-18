@@ -113,7 +113,7 @@ func _on_FireTimer_timeout():
 						nv =  cl.storage[type][0]['nv']
 						chosentype = type
 			bullet.set_type(chosentype)
-			bullet.nutrional_value = cl.storage[chosentype][0]['nv']
+			bullet.set_nv(cl.storage[chosentype][0]['nv'])
 			#cl = get_node("/root/Game/Camera2D/CanvasLayer").storage
 			bullet.speed = firespeed
 			bullet.direction = enemy.position - position
@@ -121,6 +121,21 @@ func _on_FireTimer_timeout():
 			add_child(bullet)
 			available_bullets = []
 			bullet.set_deathTimer(0.2)
+			cl.storage[chosentype].erase(cl.storage[chosentype][0])
+			if chosentype == "Chips":
+				cl._update_bullet(0,-1)
+			if chosentype == "Rice":
+				cl._update_bullet(1,-1)
+			if chosentype == "Salad":
+				cl._update_bullet(2,-1)
+			if chosentype == "Burger":
+				cl._update_bullet(3,-1)
+			if chosentype == "Pasta":
+				cl._update_bullet(4,-1)
+			if chosentype == "Schnitzel":
+				cl._update_bullet(5,-1)
+			if chosentype == "Soup":
+				cl._update_bullet(6,-1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
