@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/prefab/floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/prefab/kit.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/scripts/menu.gd" type="Script" id=4]
 [ext_resource path="res://src/scripts/Game_Board.gd" type="Script" id=5]
 [ext_resource path="res://src/prefab/Flieband.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/prefab/Import.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Node2D"]
 
@@ -22,7 +23,7 @@ smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 script = ExtResource( 4 )
-buildings = [ ExtResource( 6 ) ]
+buildings = [ ExtResource( 6 ), null, null, ExtResource( 7 ) ]
 
 [node name="MoneyText" type="RichTextLabel" parent="Camera2D/CanvasLayer"]
 margin_left = 24.0
@@ -55,9 +56,9 @@ __meta__ = {
 }
 
 [node name="MenuButton" type="MenuButton" parent="Camera2D/CanvasLayer"]
-margin_left = 1696.0
+margin_left = 1824.0
 margin_top = 24.0
-margin_right = 1760.0
+margin_right = 1888.0
 margin_bottom = 64.0
 text = "Menu"
 __meta__ = {
@@ -65,20 +66,40 @@ __meta__ = {
 }
 
 [node name="BuildMenue" type="MenuButton" parent="Camera2D/CanvasLayer"]
-margin_left = 1824.0
+margin_left = 1696.0
 margin_top = 24.0
-margin_right = 1888.0
+margin_right = 1760.0
 margin_bottom = 64.0
 text = "Built"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Roh" type="MenuButton" parent="Camera2D/CanvasLayer"]
+margin_left = 1416.0
+margin_top = 24.0
+margin_right = 1528.0
+margin_bottom = 64.0
+text = "Raw Materials"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bullet" type="MenuButton" parent="Camera2D/CanvasLayer"]
+margin_left = 1568.0
+margin_top = 24.0
+margin_right = 1632.0
+margin_bottom = 64.0
+text = "Bullets"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="Camera2D/CanvasLayer"]
-margin_left = 1768.0
-margin_top = 1024.0
-margin_right = 1888.0
-margin_bottom = 1048.0
+margin_left = 896.0
+margin_top = 24.0
+margin_right = 1024.0
+margin_bottom = 56.0
 text = "Swap Location"
 __meta__ = {
 "_edit_use_anchors_": false
