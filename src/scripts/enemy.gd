@@ -33,11 +33,13 @@ func _ready():
 	position = Vector2(0,400)
 	speed = rand_range(50,300)
 	screen_size = get_viewport_rect().size
-	hunger = rand_range(1,5)
+	var max_hunger = get_node("/root/Game/Camera2D/CanvasLayer").max_hunger
+	hunger = rand_range(max_hunger/2, max_hunger)
 	set_type("prof")
 	position = Vector2(50,850)
 	direction = Vector2(1, 0)
 	v = Vector2(speed, 1)
+
 
 func _process(delta):
 	var newPos = position + direction * delta

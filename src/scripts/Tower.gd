@@ -57,9 +57,9 @@ func _on_build_pressed(id):
 		if id == 0:
 			set_reload(reload * 0.75)
 		if id == 1:
-			set_reach(reach * 0.75)
+			set_reach(reach * 1.25)
 		if id == 2:
-			firespeed *= 1.5
+			firespeed *= 1.25
 		if id == 3:
 			multishot += 1
 
