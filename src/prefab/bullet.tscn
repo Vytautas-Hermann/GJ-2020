@@ -2,30 +2,30 @@
 
 [ext_resource path="res://src/scripts/bullet.gd" type="Script" id=1]
 [ext_resource path="res://src/images/Reis.png" type="Texture" id=2]
-[ext_resource path="res://src/images/noodle.png" type="Texture" id=3]
-[ext_resource path="res://src/images/Pizza.png" type="Texture" id=4]
+[ext_resource path="res://src/images/noodles.png" type="Texture" id=3]
+[ext_resource path="res://src/images/soup.png" type="Texture" id=4]
 [ext_resource path="res://src/images/Burger.png" type="Texture" id=5]
 [ext_resource path="res://src/images/POmmes.png" type="Texture" id=6]
-[ext_resource path="res://src/images/Amu_salat.png" type="Texture" id=7]
+[ext_resource path="res://src/images/salad.png" type="Texture" id=7]
 [ext_resource path="res://src/images/Schnitzel.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Burger",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Schnitzel",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "Chips",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Pasta",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Burger",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -33,14 +33,14 @@ animations = [ {
 "name": "Rice",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Schnitzel",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "Soup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Pasta",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -61,9 +61,9 @@ scale = Vector2( 3, 3 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 2 )
-animation = "Burger"
+animation = "Pasta"
 
 [node name="DeathTimer" type="Timer" parent="."]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
