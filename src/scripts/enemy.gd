@@ -39,10 +39,8 @@ func get_tag():
 func _on_Enemy_area_entered(area):
 	if area.get_tag() == "bullet":
 		saturation += area.get_nv()
-		print(saturation)
 		for substance in area.substances:
 			if substance in allergies:
-				print("killed someone because of " + substance)
 				area.queue_free()
 				queue_free()
 		area.queue_free()
