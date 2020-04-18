@@ -29,19 +29,19 @@ export var storage = {
 }
 
 func _ready() -> void:
-	$MoneyText.text="Money: %s" % money
+	$MoneyTextControl/MoneyText.text="%s" % money
 	$HealthText.text="Health: %s" % health
 	$ScoreText.text="Score: %s" % score
-	$MenuButton.get_popup().add_item("Sound on/off")
-	$MenuButton.get_popup().add_item("Main Menu")
-	$MenuButton.get_popup().connect("id_pressed", self, "_on_item_pressed")
+	$MenuControl/MenuButton.get_popup().add_item("Sound on/off")
+	$MenuControl/MenuButton.get_popup().add_item("Main Menu")
+	$MenuControl/MenuButton.get_popup().connect("id_pressed", self, "_on_item_pressed")
 	$Button.connect("pressed", self,"_swap")
 	_set_maze_built()
 	_init_roh()
 	_init_bullet()
 
 func _on_item_pressed(id):
-	var item_name = $MenuButton.get_popup().get_item_text(id)
+	var item_name = $MenuControl/MenuButton.get_popup().get_item_text(id)
 	if item_name == "Main Menu":
 		_on_mainMenu()
 
@@ -62,7 +62,7 @@ func _change_money(var bal):
 	if money + bal < 0:
 		return false
 	money += bal
-	$MoneyText.text="Money: %s" % money
+	$MoneyText.text="%s" % money
 	return true
 
 func _decrease_health(var loss):
@@ -76,25 +76,25 @@ func _increase_score(var add):
 	$ScoreText.text="Score: %s" % score
 
 func _set_maze_built():
-	for child in $BuildMenue.get_popup().items:
-		$BuildMenue.get_popup().remove_item(0)
-	$BuildMenue.get_popup().add_item("Tower: %s" % cost[0])
-	$BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
+	for child in $BuildControl/BuildMenue.get_popup().items:
+		$BuildControl/BuildMenue.get_popup().remove_item(0)
+	$BuildControl/BuildMenue.get_popup().add_item("Tower: %s" % cost[0])
+	$BuildControl/BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
 
 func _set_kit_built():
-	for child in $BuildMenue.get_popup().items:
-		$BuildMenue.get_popup().remove_item(0)
-	$BuildMenue.get_popup().add_item("Beilage: %s" % cost[1])
-	$BuildMenue.get_popup().add_item("Gericht: %s" % cost[2])
-	$BuildMenue.get_popup().add_item("Import: %s" % cost[3])
-	$BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
+	for child in $BuildControl/BuildMenue.get_popup().items:
+		$BuildControl/BuildMenue.get_popup().remove_item(0)
+	$BuildControl/BuildMenue.get_popup().add_item("Beilage: %s" % cost[1])
+	$BuildControl/BuildMenue.get_popup().add_item("Gericht: %s" % cost[2])
+	$BuildControl/BuildMenue.get_popup().add_item("Import: %s" % cost[3])
+	$BuildControl/BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
 
 func _on_build_pressed(id):
 	built = id
 
 func _init_roh():
 	for i in range(0, rohName.size()):
-		$Roh.get_popup().add_item(rohName[i] % roh[i])
+		$RawControl/Roh.get_popup().add_item(rohName[i] % roh[i])
 
 func _init_bullet():
 	for i in range(0, bulletName.size()):
@@ -106,7 +106,7 @@ func _update_roh(idx, val):
 			roh[idx] += val
 	else:
 		roh[idx] += val
-	$Roh.get_popup().set_item_text(idx, rohName[idx] % roh[idx])
+	$RawControl/Roh.get_popup().set_item_text(idx, rohName[idx] % roh[idx])
 
 func _update_bullet(idx, val):
 	if val > 0:

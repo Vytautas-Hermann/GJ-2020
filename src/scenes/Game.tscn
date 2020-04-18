@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/prefab/floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/prefab/kit.tscn" type="PackedScene" id=2]
@@ -10,9 +10,13 @@
 [ext_resource path="res://src/scripts/Game.gd" type="Script" id=8]
 [ext_resource path="res://src/prefab/.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/prefab/register.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/images/noodle.png" type="Texture" id=11]
+[ext_resource path="res://src/images/SBwhite.png" type="Texture" id=11]
 [ext_resource path="res://src/prefab/oven.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/prefab/micro.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/images/Icon_3Menu.png" type="Texture" id=14]
+[ext_resource path="res://src/images/Icon_Money.png" type="Texture" id=15]
+[ext_resource path="res://src/images/Icon_2Craft.png" type="Texture" id=16]
+[ext_resource path="res://src/images/Icon_1Raw.png" type="Texture" id=17]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 8 )
@@ -35,12 +39,40 @@ smoothing_enabled = true
 script = ExtResource( 4 )
 buildings = [ ExtResource( 6 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 7 ) ]
 
-[node name="MoneyText" type="RichTextLabel" parent="Camera2D/CanvasLayer"]
+[node name="MoneyTextControl" type="Control" parent="Camera2D/CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Sprite" type="Sprite" parent="Camera2D/CanvasLayer/MoneyTextControl"]
+position = Vector2( 63.7363, 30.0528 )
+scale = Vector2( 0.146786, 0.125198 )
+texture = ExtResource( 15 )
+
+[node name="MoneyText" type="RichTextLabel" parent="Camera2D/CanvasLayer/MoneyTextControl"]
 margin_left = 24.0
 margin_top = 24.0
 margin_right = 128.0
 margin_bottom = 64.0
-text = "Money"
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuControl" type="Control" parent="Camera2D/CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Sprite2" type="Sprite" parent="Camera2D/CanvasLayer/MenuControl"]
+position = Vector2( 1856.56, 42.7475 )
+scale = Vector2( 0.146786, 0.125198 )
+texture = ExtResource( 14 )
+
+[node name="MenuButton" type="MenuButton" parent="Camera2D/CanvasLayer/MenuControl"]
+margin_left = 1824.0
+margin_top = 24.0
+margin_right = 1888.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,6 +82,7 @@ margin_left = 160.0
 margin_top = 24.0
 margin_right = 256.0
 margin_bottom = 64.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Health"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -60,37 +93,51 @@ margin_left = 288.0
 margin_top = 24.0
 margin_right = 384.0
 margin_bottom = 64.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuButton" type="MenuButton" parent="Camera2D/CanvasLayer"]
-margin_left = 1824.0
-margin_top = 24.0
-margin_right = 1888.0
-margin_bottom = 64.0
-text = "Menu"
+[node name="BuildControl" type="Control" parent="Camera2D/CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuildMenue" type="MenuButton" parent="Camera2D/CanvasLayer"]
+[node name="Sprite3" type="Sprite" parent="Camera2D/CanvasLayer/BuildControl"]
+position = Vector2( 1729.71, 43.3163 )
+scale = Vector2( 0.146786, 0.125198 )
+texture = ExtResource( 16 )
+
+[node name="BuildMenue" type="MenuButton" parent="Camera2D/CanvasLayer/BuildControl"]
+visible = false
 margin_left = 1696.0
 margin_top = 24.0
 margin_right = 1760.0
 margin_bottom = 64.0
-text = "Built"
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Roh" type="MenuButton" parent="Camera2D/CanvasLayer"]
+[node name="RawControl" type="Control" parent="Camera2D/CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Sprite4" type="Sprite" parent="Camera2D/CanvasLayer/RawControl"]
+position = Vector2( 1472.62, 42.7475 )
+scale = Vector2( 0.146786, 0.125198 )
+texture = ExtResource( 17 )
+
+[node name="Roh" type="MenuButton" parent="Camera2D/CanvasLayer/RawControl"]
+visible = false
 margin_left = 1416.0
 margin_top = 24.0
 margin_right = 1528.0
 margin_bottom = 64.0
-text = "Raw Materials"
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -100,6 +147,7 @@ margin_left = 1568.0
 margin_top = 24.0
 margin_right = 1632.0
 margin_bottom = 64.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Bullets"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -123,15 +171,42 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="Camera2D/CanvasLayer/Vegan"]
-position = Vector2( 959.889, 301.859 )
+position = Vector2( 959.672, 206.294 )
+scale = Vector2( 0.573133, 0.603418 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/Vegan"]
+margin_left = 832.803
+margin_top = 138.855
+margin_right = 1086.8
+margin_bottom = 183.855
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Aaaaah, I am vegan!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Allergy" type="Popup" parent="Camera2D/CanvasLayer"]
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Sprite" type="Sprite" parent="Camera2D/CanvasLayer/Allergy"]
-position = Vector2( 960.046, 202.11 )
+position = Vector2( 959.672, 206.294 )
+scale = Vector2( 0.573133, 0.603418 )
 texture = ExtResource( 11 )
+
+[node name="AlergicLabel" type="Label" parent="Camera2D/CanvasLayer/Allergy"]
+margin_left = 832.803
+margin_top = 138.855
+margin_right = 1086.8
+margin_bottom = 183.855
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Noooooo, I am alergic to ...!!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="registry" parent="." instance=ExtResource( 10 )]
 position = Vector2( 1850, 750 )
