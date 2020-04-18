@@ -24,19 +24,17 @@ func _ready():
 		if rand_range(0,1) < available_allergies[allergy]:
 			allergies.append(allergy)
 	position = Vector2(0,400)
-	speed = rand_range(100,200)
+	speed = rand_range(200,400)
 	screen_size = get_viewport_rect().size
 	hunger = rand_range(20,200)
 	set_type("prof")
 	position = Vector2(50,850)
-	direction = Vector2(1, 1/speed)
-	v = Vector2(speed, speed)
+	direction = Vector2(1, 0)
+	v = Vector2(speed, 1)
 
 func _process(delta):
 	var newPos = position + direction * delta
 	newPos += Vector2(50, 50) * direction
-	var lastDirection = direction
-	print(lastDirection)
 	var newDirection
 	var i
 	var j
@@ -50,34 +48,38 @@ func _process(delta):
 		# rechts
 		i = nextField.x
 		j = nextField.y + 1
-		newDirection = Vector2(1, 1/speed)
-		if (newDirection != Vector2(-1,-1)*lastDirection && !_nextField0(i,j)):
+		newDirection = Vector2(1, 0)
+		if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
 			direction = newDirection
+			v = Vector2(speed, 1)
 		else:
 			# links
 			i = nextField.x
 			j = nextField.y - 1
-			newDirection = Vector2(-1, 1/-speed)
-			if (newDirection != Vector2(-1,-1)*lastDirection && !_nextField0(i,j)):
+			newDirection = Vector2(-1, 0)
+			if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
 				direction = newDirection
+				v = Vector2(-speed, -1)
 			else:
 				# unten
 				i = nextField.x + 1
 				j = nextField.y
-				newDirection = Vector2(1/speed, 1)
-				if (newDirection != Vector2(-1,-1)*lastDirection && !_nextField0(i,j)):
+				newDirection = Vector2(0, 1)
+				if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
 					direction = newDirection
+					v = Vector2(1, speed)
 				else:
 					# oben
 					i = nextField.x -1
 					j = nextField.y
-					newDirection = Vector2(1/-speed, -1)
-					if (newDirection != Vector2(-1,-1)*lastDirection && !_nextField0(i,j)):
+					newDirection = Vector2(0, -1)
+					if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
 						#print(lastDirection)
 						print("new " + var2str(newDirection))
 						direction = newDirection
+						v = Vector2(-1,-speed)
 	
-	position += direction * v * delta
+	position += v * delta
 
 func get_tag():
 	return "enemy"
