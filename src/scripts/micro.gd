@@ -24,7 +24,7 @@ func _on_build_pressed(id):
 	elif id == 3:
 		if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-5*pow(1.66,level)):
 			level += 1
-			$MenuButton.get_popup().set_item_text(17, "Level UP: %s" % (5*pow(1.66,level)))
+			$MenuButton.get_popup().set_item_text(3, "Level UP: %s" % (5*pow(1.66,level)))
 			$Timer.wait_time *= 0.75
 	else:
 		pass
