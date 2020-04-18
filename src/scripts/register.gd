@@ -21,6 +21,10 @@ func get_tag():
 
 func _on_Area2D_area_entered(area):
 	if area.get_tag() == "enemy":
-		if not area.hungry():
-			balance += area.get_bill()
-			print(balance)
+		var cl = get_node("/root/Game/Camera2D/CanvasLayer")
+		if area.hungry():
+			cl._decrease_health(1)
+		else:
+			cl._increase_score(1)
+			cl._change_money(area.bill)
+		area.queue_free()

@@ -43,8 +43,6 @@ func _process(delta):
 	var i
 	var j
 	var nextField = _toField(newPos)
-	if (_endField(nextField.x, nextField.y)):
-		queue_free()
 	if (_nextField0(nextField.x, nextField.y)):
 		var dirx = direction.y
 		var diry = direction.x
@@ -116,9 +114,6 @@ func _on_Enemy_area_entered(area):
 func _nextField0(i, j):
 	return get_node("/root/Game/Game_Board").get("caf")[i][j] == 0
 
-func _endField(i,j):
-	if (get_node("/root/Game/Game_Board").get("caf")[i][j] == 2):
-		return true
 		
 		
 func _toField(vector):
