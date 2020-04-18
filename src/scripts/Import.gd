@@ -3,7 +3,7 @@ extends Sprite
 var level
 var product
 var prod = ["Rat", "Chicken", "Pig", "Cow", "Deer",
-		"Cheese", "Potatoe", "Cucumber", "Tomatoe", "Salat", 
+		"Cheese", "Potato", "Cucumber", "Tomato", "Salad", 
 		"Rice", "Bun", "Noodle Bad", "Noodle Avg", "Hunter sauce",
 		"Tomato sauce", "Curryn sauce", "Level UP: 5", "Sell"]
 

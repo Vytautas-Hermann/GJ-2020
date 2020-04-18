@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var score = 0
 export var money = 200
+export var max_hunger = 5
 var health = 100
 var rawCount = 0
 var bulletCount = 0
@@ -13,7 +14,7 @@ export var bulletName = ["Chips: %s", "Rice: %s", "Salad: %s", "Burger: %s",
 		"Pasta: %s", "Schnitzel: %s", "Soup: %s"]
 export var bullet = [0,0,0,0,0,0,0]
 export var rohName = ["Rat: %s", "Chicken: %s", "Pig: %s", "Cow: %s", "Deer: %s",
-		"Cheese: %s", "Potatoe: %s", "Cucumber: %s", "Tomatoe: %s", "Salat: %s", 
+		"Cheese: %s", "Potato: %s", "Cucumber: %s", "Tomato: %s", "Salat: %s", 
 		"Rice: %s", "Bun: %s", "Noodle Bad: %s", "Noodle Avg: %s", "Hunter sauce: %s",
 		"Tomato sauce: %s", "Curryn sauce: %s"]
 export var roh = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -79,6 +80,10 @@ func _decrease_health(var loss):
 func _increase_score(var add):
 	score += add
 	$ScoreControl/ScoreText.text="%s" % score
+	if not score % 15:
+		max_hunger *= 1.5
+	if not score % 30:
+		get_node("/root/Game/SpawnTimer").wait_time *= 0.75
 
 func _set_maze_built():
 	for child in $BuildControl/BuildMenue.get_popup().items:
@@ -91,8 +96,8 @@ func _set_kit_built():
 	for child in $BuildControl/BuildMenue.get_popup().items:
 		print(child)
 		$BuildControl/BuildMenue.get_popup().remove_item(0)
-	$BuildControl/BuildMenue.get_popup().add_item("Beilage: %s" % cost[1])
-	$BuildControl/BuildMenue.get_popup().add_item("Gericht: %s" % cost[2])
+	$BuildControl/BuildMenue.get_popup().add_item("Side Dish: %s" % cost[1])
+	$BuildControl/BuildMenue.get_popup().add_item("Dish: %s" % cost[2])
 	$BuildControl/BuildMenue.get_popup().add_item("Import: %s" % cost[3])
 	$BuildControl/BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
 
