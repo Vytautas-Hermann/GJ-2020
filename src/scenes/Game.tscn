@@ -27,6 +27,7 @@ script = ExtResource( 8 )
 wait_time = 30.0
 
 [node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Game_Board" type="Node2D" parent="."]
 script = ExtResource( 5 )

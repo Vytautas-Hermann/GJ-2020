@@ -40,12 +40,21 @@ func _ready():
 	direction = Vector2(1, 0)
 	v = Vector2(speed, 1)
 	
-	var lebensanzeige = Vector2(saturation/1000, 0.086)
-	$Lebensanzeige/Gruen.scale = lebensanzeige
+
 	
 
 
 func _process(delta):
+	var percent = 100*saturation/hunger
+	print("percent %s" %percent)
+	print("hunger %s" %hunger)
+	print("saturation %s" %saturation)
+	if percent > 100 :
+		percent = 100
+	var lebensanzeige = Vector2(percent/1000, 0.086)
+	$Lebensanzeige/Gruen.scale = lebensanzeige
+	
+	
 	var newPos = position + direction * delta
 	newPos += Vector2(50, 50) * direction
 	var newDirection
@@ -88,7 +97,6 @@ func _process(delta):
 					j = nextField.y
 					newDirection = Vector2(0, -1)
 					if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
-						#print(lastDirection)
 						direction = newDirection
 						v = Vector2(-1,-speed)
 						rotation = Vector2(-1,0).angle()
