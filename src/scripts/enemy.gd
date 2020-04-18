@@ -41,6 +41,7 @@ func _on_Enemy_area_entered(area):
 		saturation += area.get_nv()
 		for substance in area.substances:
 			if substance in allergies:
+				print("killed someone because of " + substance)
 				area.queue_free()
 				queue_free()
 		area.queue_free()
