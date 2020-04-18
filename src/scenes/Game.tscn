@@ -42,6 +42,9 @@ buildings = [ ExtResource( 6 ), ExtResource( 13 ), ExtResource( 12 ), ExtResourc
 [node name="MoneyTextControl" type="Control" parent="Camera2D/CanvasLayer"]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Sprite" type="Sprite" parent="Camera2D/CanvasLayer/MoneyTextControl"]
 position = Vector2( 63.7363, 30.0528 )
@@ -112,7 +115,6 @@ scale = Vector2( 0.146786, 0.125198 )
 texture = ExtResource( 16 )
 
 [node name="BuildMenue" type="MenuButton" parent="Camera2D/CanvasLayer/BuildControl"]
-visible = false
 margin_left = 1696.0
 margin_top = 24.0
 margin_right = 1760.0
@@ -132,7 +134,6 @@ scale = Vector2( 0.146786, 0.125198 )
 texture = ExtResource( 17 )
 
 [node name="Roh" type="MenuButton" parent="Camera2D/CanvasLayer/RawControl"]
-visible = false
 margin_left = 1416.0
 margin_top = 24.0
 margin_right = 1528.0

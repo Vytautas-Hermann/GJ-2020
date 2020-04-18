@@ -62,7 +62,7 @@ func _change_money(var bal):
 	if money + bal < 0:
 		return false
 	money += bal
-	$MoneyText.text="%s" % money
+	$MoneyTextControl/MoneyText.text="%s" % money
 	return true
 
 func _decrease_health(var loss):
@@ -77,12 +77,14 @@ func _increase_score(var add):
 
 func _set_maze_built():
 	for child in $BuildControl/BuildMenue.get_popup().items:
+		print(child)
 		$BuildControl/BuildMenue.get_popup().remove_item(0)
 	$BuildControl/BuildMenue.get_popup().add_item("Tower: %s" % cost[0])
 	$BuildControl/BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
 
 func _set_kit_built():
 	for child in $BuildControl/BuildMenue.get_popup().items:
+		print(child)
 		$BuildControl/BuildMenue.get_popup().remove_item(0)
 	$BuildControl/BuildMenue.get_popup().add_item("Beilage: %s" % cost[1])
 	$BuildControl/BuildMenue.get_popup().add_item("Gericht: %s" % cost[2])
