@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var score = 0
-export var money = 100
+export var money = 200
 var health = 100
 var rawCount = 0
 var bulletCount = 0
