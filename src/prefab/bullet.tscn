@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/scripts/bullet.gd" type="Script" id=1]
-[ext_resource path="res://src/images/Reis.png" type="Texture" id=2]
+[ext_resource path="res://src/images/rice.png" type="Texture" id=2]
 [ext_resource path="res://src/images/noodles.png" type="Texture" id=3]
 [ext_resource path="res://src/images/soup.png" type="Texture" id=4]
 [ext_resource path="res://src/images/Burger.png" type="Texture" id=5]
@@ -18,14 +18,9 @@ animations = [ {
 "name": "Chips",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "Pasta",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Burger",
+"name": "Salad",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -33,9 +28,14 @@ animations = [ {
 "name": "Rice",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "Schnitzel",
+"name": "Burger",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Pasta",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -43,9 +43,9 @@ animations = [ {
 "name": "Soup",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "Salad",
+"name": "Schnitzel",
 "speed": 5.0
 } ]
 
@@ -63,7 +63,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 2 )
-animation = "Pasta"
+animation = "Soup"
 
 [node name="DeathTimer" type="Timer" parent="."]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
