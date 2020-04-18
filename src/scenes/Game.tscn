@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/prefab/floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/prefab/kit.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/prefab/Import.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/scripts/Game.gd" type="Script" id=8]
 [ext_resource path="res://src/prefab/Enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/prefab/register.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 8 )
@@ -110,4 +111,8 @@ text = "Swap Location"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="registry" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1850, 750 )
+scale = Vector2( 0.5, 0.5 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
