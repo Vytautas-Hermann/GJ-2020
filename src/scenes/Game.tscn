@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/prefab/floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/prefab/kit.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/prefab/Tower.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/prefab/Import.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/scripts/Game.gd" type="Script" id=8]
-[ext_resource path="res://src/prefab/.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/prefab/register.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/images/SBwhite.png" type="Texture" id=11]
 [ext_resource path="res://src/prefab/oven.tscn" type="PackedScene" id=12]
@@ -23,7 +22,6 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 8 )
-Enemy = ExtResource( 9 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
@@ -49,20 +47,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprite3" type="Sprite" parent="Camera2D/CanvasLayer/MoneyTextControl"]
+position = Vector2( 64.3362, 31.3163 )
+scale = Vector2( 0.146786, 0.125198 )
+texture = ExtResource( 15 )
+
 [node name="MoneyText" type="RichTextLabel" parent="Camera2D/CanvasLayer/MoneyTextControl"]
 margin_left = 24.0
 margin_top = 24.0
 margin_right = 128.0
 margin_bottom = 64.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite4" type="Sprite" parent="Camera2D/CanvasLayer/MoneyTextControl"]
-position = Vector2( 191.882, 31.6936 )
-scale = Vector2( 0.146786, 0.125198 )
-texture = ExtResource( 15 )
 
 [node name="MenuControl" type="Control" parent="Camera2D/CanvasLayer"]
 margin_right = 40.0
@@ -93,20 +92,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprite4" type="Sprite" parent="Camera2D/CanvasLayer/HealthControl"]
+position = Vector2( 190.521, 31.6936 )
+scale = Vector2( 0.146786, 0.125198 )
+texture = ExtResource( 18 )
+
 [node name="HealthText" type="RichTextLabel" parent="Camera2D/CanvasLayer/HealthControl"]
 margin_left = 160.0
 margin_top = 24.0
 margin_right = 256.0
 margin_bottom = 64.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite3" type="Sprite" parent="Camera2D/CanvasLayer/HealthControl"]
-position = Vector2( 64.3362, 31.3163 )
-scale = Vector2( 0.146786, 0.125198 )
-texture = ExtResource( 18 )
 
 [node name="ScoreControl" type="Control" parent="Camera2D/CanvasLayer"]
 margin_right = 40.0
@@ -115,20 +115,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprite5" type="Sprite" parent="Camera2D/CanvasLayer/ScoreControl"]
+position = Vector2( 320.663, 32.5299 )
+scale = Vector2( 0.146786, 0.125198 )
+texture = ExtResource( 19 )
+
 [node name="ScoreText" type="RichTextLabel" parent="Camera2D/CanvasLayer/ScoreControl"]
 margin_left = 288.0
 margin_top = 24.0
 margin_right = 384.0
 margin_bottom = 64.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite5" type="Sprite" parent="Camera2D/CanvasLayer/ScoreControl"]
-position = Vector2( 320.663, 32.5299 )
-scale = Vector2( 0.146786, 0.125198 )
-texture = ExtResource( 19 )
 
 [node name="BuildControl" type="Control" parent="Camera2D/CanvasLayer"]
 margin_right = 40.0
@@ -161,11 +162,22 @@ position = Vector2( 1472.62, 42.7475 )
 scale = Vector2( 0.146786, 0.125198 )
 texture = ExtResource( 17 )
 
+[node name="RawText" type="RichTextLabel" parent="Camera2D/CanvasLayer/RawControl"]
+margin_left = 1439.76
+margin_top = 35.858
+margin_right = 1543.76
+margin_bottom = 75.858
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Roh" type="MenuButton" parent="Camera2D/CanvasLayer/RawControl"]
-margin_left = 1416.0
-margin_top = 24.0
-margin_right = 1528.0
-margin_bottom = 64.0
+margin_left = 1431.91
+margin_top = 34.2668
+margin_right = 1543.91
+margin_bottom = 74.2668
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -174,6 +186,23 @@ __meta__ = {
 [node name="BulletControl" type="Control" parent="Camera2D/CanvasLayer"]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite5" type="Sprite" parent="Camera2D/CanvasLayer/BulletControl"]
+position = Vector2( 1615.7, 42.7475 )
+scale = Vector2( 0.146786, 0.125198 )
+texture = ExtResource( 20 )
+
+[node name="BulletText" type="RichTextLabel" parent="Camera2D/CanvasLayer/BulletControl"]
+margin_left = 1568.1
+margin_top = 36.3714
+margin_right = 1672.1
+margin_bottom = 76.3714
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Test
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -187,11 +216,6 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite5" type="Sprite" parent="Camera2D/CanvasLayer/BulletControl"]
-position = Vector2( 1615.7, 42.7475 )
-scale = Vector2( 0.146786, 0.125198 )
-texture = ExtResource( 20 )
 
 [node name="Button" type="Button" parent="Camera2D/CanvasLayer"]
 margin_left = 896.0

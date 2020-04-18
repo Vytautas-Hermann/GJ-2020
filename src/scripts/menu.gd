@@ -3,6 +3,8 @@ extends CanvasLayer
 var score = 0
 export var money = 100
 var health = 100
+var rawCount = 0
+var bulletCount = 0
 var maze = true
 var built = -1
 var cost = [10, 10, 10, 5]
@@ -32,6 +34,8 @@ func _ready() -> void:
 	$MoneyTextControl/MoneyText.text="%s" % money
 	$HealthControl/HealthText.text="%s" % health
 	$ScoreControl/ScoreText.text="%s" % score
+	$BulletControl/BulletText.text="%s" % bulletCount
+	$RawControl/RawText.text="%s" % rawCount
 	$MenuControl/MenuButton.get_popup().add_item("Sound on/off")
 	$MenuControl/MenuButton.get_popup().add_item("Main Menu")
 	$MenuControl/MenuButton.get_popup().connect("id_pressed", self, "_on_item_pressed")
@@ -64,6 +68,7 @@ func _change_money(var bal):
 	money += bal
 	$MoneyTextControl/MoneyText.text="%s" % money
 	return true
+	
 
 func _decrease_health(var loss):
 	health -= loss
@@ -106,9 +111,12 @@ func _update_roh(idx, val):
 	if val > 0:
 		if _change_money(-val*rohCost[idx]):
 			roh[idx] += val
+			rawCount += val
 	else:
 		roh[idx] += val
+		rawCount += val
 	$RawControl/Roh.get_popup().set_item_text(idx, rohName[idx] % roh[idx])
+	$RawControl/RawText.text="%s" % rawCount
 
 func _update_bullet(idx, val):
 	if val > 0:
@@ -116,16 +124,19 @@ func _update_bullet(idx, val):
 			if roh[6]>=3*val:
 				_update_roh(6, -3*val)
 				bullet[idx] += val
+				bulletCount += val
 				storage['Chips'].append({"nv": pow(rohNV[idx], 3), "price": 1})
 		if idx == 1:
 			if roh[10]>=3*val:
 				_update_roh(10, -3*val)
 				bullet[idx] += val
+				bulletCount += val
 				storage['Rice'].append({"nv": pow(rohNV[idx], 3), "price": 1})
 		if idx == 2:
 			if roh[6]+roh[7]+roh[8]+roh[9]>=3*val:
 				var mul = _from_to(6,9,-3*val)
 				bullet[idx] += val
+				bulletCount += val
 				storage['Salad'].append({"nv": mul, "price": 1.5})
 		if idx == 3:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val && roh[5] >= val && roh[6]+roh[7]+roh[8]+roh[9] >= val && roh[11] >= val:
@@ -134,6 +145,7 @@ func _update_bullet(idx, val):
 				mul *= _from_to(6,9,val)
 				_update_roh(11, -val)
 				bullet[idx] += val
+				bulletCount += val
 				storage['Burger'].append({"nv": mul * rohNV[5] * rohNV[11], "price": 4})
 		if idx == 4:
 			if roh[12]+roh[13]>=val&&roh[5]>=val&&roh[14]+roh[15]+roh[16]>=val:
@@ -141,6 +153,7 @@ func _update_bullet(idx, val):
 				mul *= _from_to(14,16,val)
 				_update_roh(5, -val)
 				bullet[idx] += val
+				bulletCount += val
 				storage['Pasta'].append({"nv": mul * rohNV[5], "price": 3.5})
 		if idx == 5:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val &&roh[6]>=val&&roh[11]>=val&&roh[14]+roh[15]+roh[16]>=val:
@@ -149,6 +162,7 @@ func _update_bullet(idx, val):
 				_update_roh(11, -val)
 				_update_roh(6, -val)
 				bullet[idx] += val
+				bulletCount += val
 				storage['Schnitzel'].append({"nv": mul * rohNV[6] * rohNV[11], "price": 4.5})
 		if idx == 6:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val &&roh[14]+roh[15]+roh[16]>=val&&roh[6]+roh[7]+roh[8]+roh[9]:
@@ -156,10 +170,12 @@ func _update_bullet(idx, val):
 				mul *= _from_to(6,9,val)
 				mul *= _from_to(14,16,val)
 				bullet[idx] += val
+				bulletCount += val
 				storage['Soup'].append({"nv": mul, "price": 3.5})
 	else:
 		bullet[idx] += val
 	$BulletControl/Bullet.get_popup().set_item_text(idx, bulletName[idx] % bullet[idx])
+	$BulletControl/BulletText.text="%s" % bulletCount
 
 func _from_to(from, to, val):
 	var mul = 1
