@@ -35,34 +35,46 @@ func _process(delta):
 	var newPos = position + direction * delta
 	newPos += Vector2(50, 50) * direction
 	var lastDirection = direction
-	#print(newPos)
+	print(lastDirection)
+	var newDirection
 	var i
 	var j
 	var nextField = _toField(newPos)
+	if (_endField(nextField.x, nextField.y)):
+		queue_free()
 	if (_nextField0(nextField.x, nextField.y)):
 		var dirx = direction.y
 		var diry = direction.x
 		nextField = nextField - Vector2(dirx, diry)
-		# oben
-		i = nextField.x -1
-		j = nextField.y
-		direction = Vector2(1/-speed, -1)		
-		if (_nextField0(i,j)):
+		# rechts
+		i = nextField.x
+		j = nextField.y + 1
+		newDirection = Vector2(1, 1/speed)
+		if (newDirection != Vector2(-1,-1)*lastDirection && !_nextField0(i,j)):
+			direction = newDirection
+		else:
 			# links
 			i = nextField.x
 			j = nextField.y - 1
-			direction = Vector2(-1, 1/-speed)
-			if _nextField0(i, j):
-				# rechts
-				i = nextField.x
-				j = nextField.y + 1
-				direction = Vector2(1, 1/speed)
-				if _nextField0(i, j):
-					# unten
-					i = nextField.x + 1
+			newDirection = Vector2(-1, 1/-speed)
+			if (newDirection != Vector2(-1,-1)*lastDirection && !_nextField0(i,j)):
+				direction = newDirection
+			else:
+				# unten
+				i = nextField.x + 1
+				j = nextField.y
+				newDirection = Vector2(1/speed, 1)
+				if (newDirection != Vector2(-1,-1)*lastDirection && !_nextField0(i,j)):
+					direction = newDirection
+				else:
+					# oben
+					i = nextField.x -1
 					j = nextField.y
-					direction = Vector2(1/speed, 1)
-				
+					newDirection = Vector2(1/-speed, -1)
+					if (newDirection != Vector2(-1,-1)*lastDirection && !_nextField0(i,j)):
+						#print(lastDirection)
+						print("new " + var2str(newDirection))
+						direction = newDirection
 	
 	position += direction * v * delta
 
@@ -85,7 +97,11 @@ func _on_Enemy_area_entered(area):
 func _nextField0(i, j):
 	return get_node("/root/Game/Game_Board").get("caf")[i][j] == 0
 
-
+func _endField(i,j):
+	if (get_node("/root/Game/Game_Board").get("caf")[i][j] == 2):
+		return true
+		
+		
 func _toField(vector):
 	var x = vector.x
 	var y = vector.y
