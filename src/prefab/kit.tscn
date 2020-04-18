@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/images/boden2.jpg" type="Texture" id=1]
+[ext_resource path="res://src/images/Flile2.png" type="Texture" id=1]
 
 [node name="kit" type="Sprite"]
-position = Vector2( -402.709, 108.901 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )

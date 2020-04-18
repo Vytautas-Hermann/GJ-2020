@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/images/tisch.png" type="Texture" id=1]
+[ext_resource path="res://src/images/Tisch5_rand.png" type="Texture" id=1]
 
 [node name="table" type="Sprite"]
-position = Vector2( -272.688, 104.797 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )
