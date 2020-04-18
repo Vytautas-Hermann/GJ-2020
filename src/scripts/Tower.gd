@@ -114,6 +114,7 @@ func _on_FireTimer_timeout():
 						chosentype = type
 			bullet.set_type(chosentype)
 			bullet.set_nv(cl.storage[chosentype][0]['nv'])
+			bullet.set_price(cl.storage[chosentype][0]['price'])
 			#cl = get_node("/root/Game/Camera2D/CanvasLayer").storage
 			bullet.speed = firespeed
 			bullet.direction = enemy.position - position
@@ -137,7 +138,3 @@ func _on_FireTimer_timeout():
 			if chosentype == "Soup":
 				cl._update_bullet(6,-1)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

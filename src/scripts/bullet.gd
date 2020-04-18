@@ -191,7 +191,6 @@ var bullets={
 func _ready():
 	screen_size = get_viewport_rect().size
 	$DeathTimer.start()
-	set_price(10)
 
 func set_price(p):
 	price = p
