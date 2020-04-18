@@ -40,7 +40,6 @@ margin_left = 24.0
 margin_top = 24.0
 margin_right = 128.0
 margin_bottom = 64.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Money"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,7 +50,6 @@ margin_left = 160.0
 margin_top = 24.0
 margin_right = 256.0
 margin_bottom = 64.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Health"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -62,7 +60,6 @@ margin_left = 288.0
 margin_top = 24.0
 margin_right = 384.0
 margin_bottom = 64.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Score"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -73,7 +70,6 @@ margin_left = 1824.0
 margin_top = 24.0
 margin_right = 1888.0
 margin_bottom = 64.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,7 +80,6 @@ margin_left = 1696.0
 margin_top = 24.0
 margin_right = 1760.0
 margin_bottom = 64.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Built"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -95,7 +90,6 @@ margin_left = 1416.0
 margin_top = 24.0
 margin_right = 1528.0
 margin_bottom = 64.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Raw Materials"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -106,8 +100,6 @@ margin_left = 1568.0
 margin_top = 24.0
 margin_right = 1632.0
 margin_bottom = 64.0
-custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Bullets"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -131,40 +123,17 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="Camera2D/CanvasLayer/Vegan"]
-position = Vector2( 959.626, 199.438 )
-scale = Vector2( 0.473841, 0.481744 )
-texture = ExtResource( 10 )
-
-[node name="VeganLabel" type="Label" parent="Camera2D/CanvasLayer/Vegan"]
-margin_left = 833.275
-margin_top = 150.32
-margin_right = 1090.28
-margin_bottom = 193.32
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Ahhhhhh, I am vegan!"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+position = Vector2( 959.889, 301.859 )
 
 [node name="Allergy" type="Popup" parent="Camera2D/CanvasLayer"]
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Sprite" type="Sprite" parent="Camera2D/CanvasLayer/Allergy"]
-position = Vector2( 959.626, 199.438 )
-scale = Vector2( 0.473841, 0.481744 )
-texture = ExtResource( 10 )
+position = Vector2( 960.046, 202.11 )
+texture = ExtResource( 11 )
 
-[node name="AlergicLabel" type="Label" parent="Camera2D/CanvasLayer/Allergy"]
-margin_left = 833.706
-margin_top = 140.65
-margin_right = 1089.71
-margin_bottom = 183.65
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Noooooo, I am alergic to ...!!"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="registry" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1850, 750 )
+scale = Vector2( 0.5, 0.5 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
