@@ -68,6 +68,8 @@ func _change_money(var bal):
 func _decrease_health(var loss):
 	health -= loss
 	$HealthText.text="Health: %s" % health
+	if health<=0:
+		get_tree().change_scene("res://src/scenes/Score.tscn")
 
 func _increase_score(var add):
 	score += add

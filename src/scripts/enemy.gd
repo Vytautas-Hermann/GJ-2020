@@ -30,7 +30,7 @@ func _ready():
 	position = Vector2(0,400)
 	speed = rand_range(50,300)
 	screen_size = get_viewport_rect().size
-	hunger = rand_range(20,200)
+	hunger = rand_range(1,5)
 	set_type("prof")
 	position = Vector2(50,850)
 	direction = Vector2(1, 0)
