@@ -124,7 +124,7 @@ func _on_Enemy_area_entered(area):
 			area.queue_free()
 	
 func _nextField0(i, j):
-	return get_node("/root/Game/Game_Board").get("caf")[i][j] == 0
+	return get_node("/root/Game/Game_Board").get("caf")[i][j] != 1
 
 		
 		
