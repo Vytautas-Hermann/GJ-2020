@@ -30,8 +30,8 @@ export var storage = {
 
 func _ready() -> void:
 	$MoneyTextControl/MoneyText.text="%s" % money
-	$HealthText.text="Health: %s" % health
-	$ScoreText.text="Score: %s" % score
+	$HealthControl/HealthText.text="%s" % health
+	$ScoreControl/ScoreText.text="%s" % score
 	$MenuControl/MenuButton.get_popup().add_item("Sound on/off")
 	$MenuControl/MenuButton.get_popup().add_item("Main Menu")
 	$MenuControl/MenuButton.get_popup().connect("id_pressed", self, "_on_item_pressed")
@@ -67,13 +67,13 @@ func _change_money(var bal):
 
 func _decrease_health(var loss):
 	health -= loss
-	$HealthText.text="Health: %s" % health
+	$HealthControl/HealthText.text="%s" % health
 	if health<=0:
 		get_tree().change_scene("res://src/scenes/Score.tscn")
 
 func _increase_score(var add):
 	score += add
-	$ScoreText.text="Score: %s" % score
+	$ScoreControl/ScoreText.text="%s" % score
 
 func _set_maze_built():
 	for child in $BuildControl/BuildMenue.get_popup().items:
@@ -100,7 +100,7 @@ func _init_roh():
 
 func _init_bullet():
 	for i in range(0, bulletName.size()):
-		$Bullet.get_popup().add_item(bulletName[i] % bullet[i])
+		$BulletControl/Bullet.get_popup().add_item(bulletName[i] % bullet[i])
 
 func _update_roh(idx, val):
 	if val > 0:
@@ -159,7 +159,7 @@ func _update_bullet(idx, val):
 				storage['Soup'].append({"nv": mul, "price": 3.5})
 	else:
 		bullet[idx] += val
-	$Bullet.get_popup().set_item_text(idx, bulletName[idx] % bullet[idx])
+	$BulletControl/Bullet.get_popup().set_item_text(idx, bulletName[idx] % bullet[idx])
 
 func _from_to(from, to, val):
 	var mul = 1
