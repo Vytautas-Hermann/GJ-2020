@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=14 format=2]
-=======
-[gd_scene load_steps=11 format=2]
->>>>>>> parent of 97a778a... lass den scheiß
 
 [ext_resource path="res://src/prefab/floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/prefab/kit.tscn" type="PackedScene" id=2]
@@ -12,16 +8,11 @@
 [ext_resource path="res://src/prefab/Tower.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/prefab/Import.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/scripts/Game.gd" type="Script" id=8]
-<<<<<<< HEAD
 [ext_resource path="res://src/prefab/.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/prefab/register.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/images/noodle.png" type="Texture" id=11]
 [ext_resource path="res://src/prefab/oven.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/prefab/micro.tscn" type="PackedScene" id=13]
-=======
-[ext_resource path="res://src/prefab/Enemy.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/images/SBwhite.png" type="Texture" id=10]
->>>>>>> parent of 97a778a... lass den scheiß
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 8 )
@@ -42,15 +33,7 @@ smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 script = ExtResource( 4 )
-<<<<<<< HEAD
-<<<<<<< HEAD
 buildings = [ ExtResource( 6 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 7 ) ]
-=======
-buildings = [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 7 ) ]
->>>>>>> master
-=======
-buildings = [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ) ]
->>>>>>> parent of 97a778a... lass den scheiß
 
 [node name="MoneyText" type="RichTextLabel" parent="Camera2D/CanvasLayer"]
 margin_left = 24.0
