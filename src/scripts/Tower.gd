@@ -6,7 +6,7 @@ var reload = 1
 var type
 var bullettype
 var reach
-var multishot = 2
+var multishot = 10
 var available_bullets = []
 var towers={
 	"pizza":{
