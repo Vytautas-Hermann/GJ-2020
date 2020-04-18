@@ -24,7 +24,7 @@ func _ready():
 		if rand_range(0,1) < available_allergies[allergy]:
 			allergies.append(allergy)
 	position = Vector2(0,400)
-	speed = rand_range(200,400)
+	speed = rand_range(50,300)
 	screen_size = get_viewport_rect().size
 	hunger = rand_range(20,200)
 	set_type("prof")
