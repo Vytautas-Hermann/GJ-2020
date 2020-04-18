@@ -12,7 +12,7 @@ func new_game():
 
 func _on_SpawnTimer_timeout():
 	var enemy = Enemy.instance()
-	print("created enemy")
+	enemy.rotation = Vector2(0,-1).angle()
 	add_child(enemy)
 
 func _on_Timer_timeout():

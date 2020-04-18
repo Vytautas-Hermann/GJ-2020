@@ -14,24 +14,14 @@ var bullets={
 		"vegan": true,
 		"aerodynamical_slowfactor": 0.5,
 		"substances": [],
-		"collider":{
-			"position":{
-				"x": 0,
-				"y": 0
-			},
-			"scale": {
-				"x": 3,
-				"y": 3
-			}
-		},
 		"sprite":{
 			"position":{
-				"x": 0,
-				"y": 0
+				"x": 3,
+				"y": -3
 			},
 			"scale": {
-				"x": 0.25,
-				"y": 0.25
+				"x": 0.07,
+				"y": 0.12
 			}
 		}
 	},
@@ -39,16 +29,6 @@ var bullets={
 		"vegan": false,
 		"aerodynamical_slowfactor": 0.75,
 		"substances": ["fish"],
-		"collider":{
-			"position":{
-				"x": 0,
-				"y": 0
-			},
-			"scale": {
-				"x": 3,
-				"y": 3
-			}
-		},
 		"sprite":{
 			"position":{
 				"x": 0,
@@ -64,24 +44,14 @@ var bullets={
 		"vegan": true,
 		"aerodynamical_slowfactor": 0.3,
 		"substances": [],
-		"collider":{
-			"position":{
-				"x": 0,
-				"y": -12
-			},
-			"scale": {
-				"x": 3,
-				"y": 3
-			}
-		},
 		"sprite":{
 			"position":{
 				"x": 0,
 				"y": 0
 			},
 			"scale": {
-				"x": 0.2,
-				"y": 0.2
+				"x": 1.2,
+				"y": 1.2
 			}
 		}
 	},
@@ -89,24 +59,14 @@ var bullets={
 		"vegan": false,
 		"aerodynamical_slowfactor": 0.9,
 		"substances": ["gluten", "lactose", "diabetis"],
-		"collider":{
-			"position":{
-				"x": 0,
-				"y": -12
-			},
-			"scale": {
-				"x": 3,
-				"y": 3
-			}
-		},
 		"sprite":{
 			"position":{
 				"x": 0,
 				"y": 0
 			},
 			"scale": {
-				"x": 0.2,
-				"y": 0.2
+				"x": 0.15,
+				"y": 0.15
 			}
 		}
 	},
@@ -114,20 +74,10 @@ var bullets={
 		"vegan": true,
 		"aerodynamical_slowfactor": 0.5,
 		"substances": ["gluten"],
-		"collider":{
-			"position":{
-				"x": 0,
-				"y": -12
-			},
-			"scale": {
-				"x": 3,
-				"y": 3
-			}
-		},
 		"sprite":{
 			"position":{
 				"x": 0,
-				"y": 0
+				"y": 11
 			},
 			"scale": {
 				"x": 0.2,
@@ -139,24 +89,14 @@ var bullets={
 		"vegan": false,
 		"aerodynamical_slowfactor": 1,
 		"substances": ["gluten"],
-		"collider":{
-			"position":{
-				"x": 0,
-				"y": -12
-			},
-			"scale": {
-				"x": 3,
-				"y": 3
-			}
-		},
 		"sprite":{
 			"position":{
 				"x": 0,
 				"y": 0
 			},
 			"scale": {
-				"x": 0.2,
-				"y": 0.2
+				"x": 1.2,
+				"y": 1.2
 			}
 		}
 	},
@@ -164,24 +104,14 @@ var bullets={
 		"vegan": true,
 		"aerodynamical_slowfactor": 0.5,
 		"substances": ["lactose"],
-		"collider":{
-			"position":{
-				"x": 0,
-				"y": -12
-			},
-			"scale": {
-				"x": 3,
-				"y": 3
-			}
-		},
 		"sprite":{
 			"position":{
 				"x": 0,
 				"y": 0
 			},
 			"scale": {
-				"x": 0.2,
-				"y": 0.2
+				"x": 0.25,
+				"y": 0.25
 			}
 		}
 	}
@@ -201,10 +131,6 @@ func get_price():
 	
 func set_type(t):
 	type = t
-	$CollisionShape2D.position.x = bullets[type]['collider']['position']['x']
-	$CollisionShape2D.position.y = bullets[type]['collider']['position']['y']
-	$CollisionShape2D.scale.x = bullets[type]['collider']['scale']['x']
-	$CollisionShape2D.scale.y = bullets[type]['collider']['scale']['y']
 	$AnimatedSprite.set_animation(type)
 	$AnimatedSprite.position.x = bullets[type]['sprite']['position']['x']
 	$AnimatedSprite.position.y = bullets[type]['sprite']['position']['y']

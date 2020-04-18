@@ -13,11 +13,6 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Pasta",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Burger",
@@ -26,11 +21,6 @@ animations = [ {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Schnitzel",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Salad",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -46,6 +36,16 @@ animations = [ {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "Soup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Pasta",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Salad",
 "speed": 5.0
 } ]
 
@@ -63,7 +63,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 2 )
-animation = "Soup"
+animation = "Burger"
 
 [node name="DeathTimer" type="Timer" parent="."]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
