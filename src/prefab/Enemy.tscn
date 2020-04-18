@@ -15,8 +15,8 @@ animations = [ {
 
 [node name="Enemy" type="Area2D"]
 linear_damp = 0.0
-collision_layer = 6
-collision_mask = 6
+collision_layer = 14
+collision_mask = 14
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
