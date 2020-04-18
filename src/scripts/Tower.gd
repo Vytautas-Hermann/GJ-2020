@@ -1,12 +1,12 @@
 extends Area2D
 
 var munition = "res://src/prefab/bullet.tscn"
-var firespeed = 500
-var reload = 1 
+var firespeed = 250
+var reload = 2 
+var multishot = 1
+var reach = 20
 var type
 var bullettype
-var reach
-var multishot = 3
 var available_bullets = []
 var towers={
 	"pizza":{
@@ -33,6 +33,9 @@ var towers={
 		}
 	}
 }
+var prod = ["Reload: %s", "Reach: %s", "Firespeed: %s", "Multishot: %s"]
+var cost = [10, 10, 5, 30]
+var lvl = [0, 0, 0, 0]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,8 +43,27 @@ func _ready():
 	$FireTimer.start()
 	set_type("pizza")
 	bullettype = "pizza"
-	set_reach(30)
-	set_reload(1.5)
+	set_reach(reach)
+	set_reload(reload)
+	_init_prod()
+
+func _init_prod():
+	for i in range(0,prod.size()):
+		$MenuButton.get_popup().add_item(prod[i] % cost[i])
+	$MenuButton.get_popup().connect("id_pressed", self, "_on_build_pressed")
+
+func _on_build_pressed(id):
+	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[id]*pow(1.66,lvl[id])):
+		lvl[id] += 1
+		$MenuButton.get_popup().set_item_text(id, prod[id] % (cost[id]*pow(1.66,lvl[id])))
+		if id == 0:
+			set_reload(reload * 0.75)
+		if id == 1:
+			set_reach(reach * 0.75)
+		if id == 2:
+			firespeed *= 1.5
+		if id == 3:
+			multishot += 1
 
 func set_reach(r):
 	reach = r
