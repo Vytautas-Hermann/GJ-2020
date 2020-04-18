@@ -87,14 +87,21 @@ func _on_FireTimer_timeout():
 			var bullet = load(munition).instance()
 			for i in bullet.bullets:
 				available_bullets.append(i)
-			var chosentype = available_bullets[int(rand_range(0,len(available_bullets)))]
-			#for type in available_bullets:
-			#	for allergy in enemy.allergies: # implement preferences (vegan)
-			#	if allergy in bullet.bullets[type]['substances']:
-			#			continue
-			#		elif bullet.bullets[type]['nutritional_value'] > nv:
-			#			nv =  bullet.bullets[type]['nutritional_value']
-			#			chosentype = type
+			if not len(available_bullets):
+				break
+			var chosentype = null #= available_bullets[int(rand_range(0,len(available_bullets)))]
+			for type in available_bullets:
+				for allergy in enemy.allergies: # implement preferences (vegan)
+					if allergy in bullet.bullets[type]['substances']:
+						continue
+					elif bullet.bullets[type]['nutrition_value'] > nv:
+						nv =  bullet.bullets[type]['nutrition_value']
+						chosentype = type
+			if not chosentype:
+				for type in available_bullets:
+					if bullet.bullets[type]['nutrition_value'] > nv:
+						nv =  bullet.bullets[type]['nutrition_value']
+						chosentype = type
 			bullet.set_type(chosentype)
 			bullet.speed = firespeed
 			bullet.direction = enemy.position - position
