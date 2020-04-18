@@ -11,6 +11,7 @@ var type
 var allergies = []
 var saturation = 0
 var hunger
+var direction
 var v
 var screen_size
 
@@ -25,12 +26,45 @@ func _ready():
 	speed = rand_range(100,200)
 	screen_size = get_viewport_rect().size
 	hunger = rand_range(20,200)
-	var f = rand_range(0,1)
-	v = Vector2(f*speed, (1-f)*speed)
 	set_type("prof")
+	position = Vector2(50,850)
+	direction = Vector2(1, 1/speed)
+	v = Vector2(speed, speed)
 
 func _process(delta):
-	position += v * delta
+	var newPos = position + direction * delta
+	newPos += Vector2(50, 50) * direction
+	var lastDirection = direction
+	#print(newPos)
+	var i
+	var j
+	var nextField = _toField(newPos)
+	if (_nextField0(nextField.x, nextField.y)):
+		var dirx = direction.y
+		var diry = direction.x
+		nextField = nextField - Vector2(dirx, diry)
+		# oben
+		i = nextField.x -1
+		j = nextField.y
+		direction = Vector2(1/-speed, -1)		
+		if (_nextField0(i,j)):
+			# links
+			i = nextField.x
+			j = nextField.y - 1
+			direction = Vector2(-1, 1/-speed)
+			if _nextField0(i, j):
+				# rechts
+				i = nextField.x
+				j = nextField.y + 1
+				direction = Vector2(1, 1/speed)
+				if _nextField0(i, j):
+					# unten
+					i = nextField.x + 1
+					j = nextField.y
+					direction = Vector2(1/speed, 1)
+				
+	
+	position += direction * v * delta
 
 func get_tag():
 	return "enemy"
@@ -48,10 +82,21 @@ func _on_Enemy_area_entered(area):
 		if saturation > hunger:
 			queue_free()
 	
+func _nextField0(i, j):
+	return get_node("/root/Game/Game_Board").get("caf")[i][j] == 0
 
 
+func _toField(vector):
+	var x = vector.x
+	var y = vector.y
+	var i = 0
+	var j = 0
+	while x > 100:
+		x-=100
+		j+=1
+	while y > 100:
+		y-=100
+		i+=1
+	return Vector2(i, j)
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
