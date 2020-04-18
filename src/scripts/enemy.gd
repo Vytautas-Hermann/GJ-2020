@@ -22,15 +22,16 @@ func _ready():
 	for allergy in available_allergies:
 		if rand_range(0,1) < available_allergies[allergy]:
 			allergies.append(allergy)
+	position = Vector2(0,400)
 	speed = rand_range(100,200)
 	screen_size = get_viewport_rect().size
 	hunger = rand_range(20,200)
 	var f = rand_range(0,1)
-	v = Vector2(f*speed, (1-f)*speed)
+	v = Vector2(1, 0)
 	set_type("prof")
 
 func _process(delta):
-	position += v * delta
+	position += v * delta * speed
 
 func get_tag():
 	return "enemy"

@@ -13,4 +13,10 @@ wait_time = 2.0
 
 [node name="Tower" parent="." instance=ExtResource( 4 )]
 position = Vector2( 500, 500 )
+
+[node name="Tower2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1000, 500 )
+
+[node name="Tower3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1500, 500 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
