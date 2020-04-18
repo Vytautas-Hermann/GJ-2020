@@ -16,6 +16,17 @@ export var rohName = ["Rat: %s", "Chicken: %s", "Pig: %s", "Cow: %s", "Deer: %s"
 		"Tomato sauce: %s", "Curryn sauce: %s"]
 export var roh = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var rohCost = [0.01, 0.25, 0.3, 0.35, 0.5, 0.2, 0.1, 0.15, 0.15, 0.1, 0.1, 0.2, 0.2, 0.3, 0.15, 0.2, 0.25]
+var rohNV = [1.01, 1.2, 1.3, 1.4, 1.8, 1.3, 1.1, 1.15, 1.15, 1.05, 1.05, 1.1, 1.15, 1.3, 1.2, 1.15, 1.3]
+
+export var storage = {
+	"Chips": [],
+	"Rice": [],
+	"Salad": [],
+	"Burger": [],
+	"Pasta": [],
+	"Schnitzel": [],
+	"Soup": []
+}
 
 func _ready() -> void:
 	$MoneyText.text="Money: %s" % money
@@ -101,53 +112,64 @@ func _update_bullet(idx, val):
 			if roh[6]>=3*val:
 				_update_roh(6, -3*val)
 				bullet[idx] += val
+				storage['Chips'].append({"nv": pow(rohNV[idx], 3), "price": 1})
 		if idx == 1:
 			if roh[10]>=3*val:
 				_update_roh(10, -3*val)
 				bullet[idx] += val
+				storage['Rice'].append({"nv": pow(rohNV[idx], 3), "price": 1})
 		if idx == 2:
 			if roh[6]+roh[7]+roh[8]+roh[9]>=3*val:
-				_from_to(6,9,-3*val)
+				var mul = _from_to(6,9,-3*val)
 				bullet[idx] += val
+				storage['Salad'].append({"nv": mul, "price": 1.5})
 		if idx == 3:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val && roh[5] >= val && roh[6]+roh[7]+roh[8]+roh[9] >= val && roh[11] >= val:
-				_from_to(0,4,val)
+				var mul = _from_to(0,4,val)
 				_update_roh(5, -val)
-				_from_to(6,9,val)
+				mul *= _from_to(6,9,val)
 				_update_roh(11, -val)
 				bullet[idx] += val
+				storage['Burger'].append({"nv": mul * rohNV[5] * rohNV[11], "price": 4})
 		if idx == 4:
 			if roh[12]+roh[13]>=val&&roh[5]>=val&&roh[14]+roh[15]+roh[16]>=val:
-				_from_to(12,13,val)
-				_from_to(14,16,val)
+				var mul = _from_to(12,13,val)
+				mul *= _from_to(14,16,val)
 				_update_roh(5, -val)
 				bullet[idx] += val
+				storage['Pasta'].append({"nv": mul * rohNV[5], "price": 3.5})
 		if idx == 5:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val &&roh[6]>=val&&roh[11]>=val&&roh[14]+roh[15]+roh[16]>=val:
-				_from_to(0,4,val)
-				_from_to(6,9,val)
+				var mul = _from_to(0,4,val)
+				mul *= _from_to(6,9,val)
 				_update_roh(11, -val)
 				_update_roh(6, -val)
 				bullet[idx] += val
+				storage['Schnitzel'].append({"nv": mul * rohNV[6] * rohNV[11], "price": 4.5})
 		if idx == 6:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val &&roh[14]+roh[15]+roh[16]>=val&&roh[6]+roh[7]+roh[8]+roh[9]:
-				_from_to(0,4,val)
-				_from_to(6,9,val)
-				_from_to(14,16,val)
+				var mul = _from_to(0,4,val)
+				mul *= _from_to(6,9,val)
+				mul *= _from_to(14,16,val)
 				bullet[idx] += val
+				storage['Soup'].append({"nv": mul, "price": 3.5})
 	else:
 		bullet[idx] -= 1
 	$Bullet.get_popup().set_item_text(idx, bulletName[idx] % bullet[idx])
 
 func _from_to(from, to, val):
+	var mul = 1
 	while val>0 && from <= to:
 		if roh[from]>val:
+			mul *= pow(rohNV[from], val)
 			_update_roh(from, -val)
 			val=0
 		else:
+			mul *= pow(rohNV[from], roh[from])
 			_update_roh(from, -roh[from])
 			val -= roh[from]
 		from+= 1
+	return mul
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
@@ -167,7 +189,7 @@ func _unhandled_input(event):
 					if maze:
 						if get_node("/root/Game/Game_Board").get("caf")[j][i] == 0:
 							if money - cost[built] > 0:
-								money -= cost[built]
+								_change_money(-cost[built])
 								cost[built] *= 1.5
 								_set_maze_built()
 								var bu = buildings[built].instance()
@@ -177,7 +199,7 @@ func _unhandled_input(event):
 					else:
 						if get_node("/root/Game/Game_Board").get("kitchen")[j][i] == 0:
 							if money - cost[built+1] > 0:
-								money -= cost[built+1]
+								_change_money(-cost[built+1])
 								cost[built+1] *= 1.5
 								_set_kit_built()
 								var bu = buildings[built+1].instance()

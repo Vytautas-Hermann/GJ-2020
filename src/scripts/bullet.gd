@@ -10,12 +10,10 @@ var type
 var price
 var vegan
 var bullets={
-	"pizza":{
-		"vegan": false,
-		"nutrition_value": 100,
-		"aerodynamical_slowfactor": 1,
-		"substances": ["lactose", "gluten"],
-		"image": "Pizza.png",
+	"Chips":{
+		"vegan": true,
+		"aerodynamical_slowfactor": 0.5,
+		"substances": [],
 		"collider":{
 			"position":{
 				"x": 0,
@@ -37,12 +35,10 @@ var bullets={
 			}
 		}
 	},
-	"rice":{
+	"Rice":{
 		"vegan": false,
-		"nutrition_value": 50,
 		"aerodynamical_slowfactor": 0.75,
-		"substances": [],
-		"image": "Reis.png",
+		"substances": ["fish"],
 		"collider":{
 			"position":{
 				"x": 0,
@@ -64,12 +60,110 @@ var bullets={
 			}
 		}
 	},
-	"noodle":{
+	"Salad":{
 		"vegan": true,
-		"nutrition_value": 75,
+		"aerodynamical_slowfactor": 0.3,
+		"substances": [],
+		"collider":{
+			"position":{
+				"x": 0,
+				"y": -12
+			},
+			"scale": {
+				"x": 3,
+				"y": 3
+			}
+		},
+		"sprite":{
+			"position":{
+				"x": 0,
+				"y": 0
+			},
+			"scale": {
+				"x": 0.2,
+				"y": 0.2
+			}
+		}
+	},
+	"Burger":{
+		"vegan": false,
+		"aerodynamical_slowfactor": 0.9,
+		"substances": ["gluten", "lactose", "diabetis"],
+		"collider":{
+			"position":{
+				"x": 0,
+				"y": -12
+			},
+			"scale": {
+				"x": 3,
+				"y": 3
+			}
+		},
+		"sprite":{
+			"position":{
+				"x": 0,
+				"y": 0
+			},
+			"scale": {
+				"x": 0.2,
+				"y": 0.2
+			}
+		}
+	},
+	"Pasta":{
+		"vegan": true,
 		"aerodynamical_slowfactor": 0.5,
 		"substances": ["gluten"],
-		"image": "noodle.png",
+		"collider":{
+			"position":{
+				"x": 0,
+				"y": -12
+			},
+			"scale": {
+				"x": 3,
+				"y": 3
+			}
+		},
+		"sprite":{
+			"position":{
+				"x": 0,
+				"y": 0
+			},
+			"scale": {
+				"x": 0.2,
+				"y": 0.2
+			}
+		}
+	},
+	"Schnitzel":{
+		"vegan": false,
+		"aerodynamical_slowfactor": 1,
+		"substances": ["gluten"],
+		"collider":{
+			"position":{
+				"x": 0,
+				"y": -12
+			},
+			"scale": {
+				"x": 3,
+				"y": 3
+			}
+		},
+		"sprite":{
+			"position":{
+				"x": 0,
+				"y": 0
+			},
+			"scale": {
+				"x": 0.2,
+				"y": 0.2
+			}
+		}
+	},
+	"Soup":{
+		"vegan": true,
+		"aerodynamical_slowfactor": 0.5,
+		"substances": ["lactose"],
 		"collider":{
 			"position":{
 				"x": 0,
@@ -118,7 +212,6 @@ func set_type(t):
 	$AnimatedSprite.scale.x = bullets[type]['sprite']['scale']['x']
 	$AnimatedSprite.scale.y = bullets[type]['sprite']['scale']['y']
 	substances = bullets[type]['substances']
-	nutrition_value = bullets[type]['nutrition_value']
 	aerodynamical_slowfactor = bullets[type]['aerodynamical_slowfactor']
 	vegan = bullets[type]['vegan']
 

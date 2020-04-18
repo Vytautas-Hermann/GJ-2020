@@ -76,6 +76,7 @@ func get_tag():
 func _on_FireTimer_timeout():
 	var areas = get_overlapping_areas()
 	var enemies = []
+	var cl = get_node("/root/Game/Camera2D/CanvasLayer")
 	for area in areas:
 		if area.get_tag() == "enemy":
 			if area.hungry():
@@ -87,8 +88,9 @@ func _on_FireTimer_timeout():
 			var enemy = enemies[i]
 			var allergic = false
 			var bullet = load(munition).instance()
-			for i in bullet.bullets:
-				available_bullets.append(i)
+			for i in cl.storage:
+				if len(cl.storage[i]) >0:
+					available_bullets.append(i)
 			if not len(available_bullets):
 				break
 			var chosentype = null #get available bullets (those, that are produced and theres more than 0 of them)
@@ -102,15 +104,17 @@ func _on_FireTimer_timeout():
 				if allergic:
 					allergic = false
 					continue
-				if bullet.bullets[type]['nutrition_value'] > nv:
-					nv =  bullet.bullets[type]['nutrition_value']
+				if cl.storage[type][0]['nv'] > nv:
+					nv = cl.storage[type][0]['nv']
 					chosentype = type
 			if not chosentype:
 				for type in available_bullets:
-					if bullet.bullets[type]['nutrition_value'] > nv:
-						nv =  bullet.bullets[type]['nutrition_value']
+					if cl.storage[type][0]['nv']:
+						nv =  cl.storage[type][0]['nv']
 						chosentype = type
 			bullet.set_type(chosentype)
+			bullet.nutrional_value = cl.storage[chosentype][0]['nv']
+			#cl = get_node("/root/Game/Camera2D/CanvasLayer").storage
 			bullet.speed = firespeed
 			bullet.direction = enemy.position - position
 			bullet.direction = bullet.direction.normalized()
