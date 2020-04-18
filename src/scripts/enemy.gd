@@ -100,6 +100,9 @@ func _on_Enemy_area_entered(area):
 		if vegan:
 			if not area.vegan:
 				print("I'M VEGAN")
+				if get_node("/root/Game/Camera2D/CanvasLayer").maze:
+					var pop = get_node("/root/Game/Camera2D/CanvasLayer/Vegan")
+					popupTimer(pop)
 				edible = false
 		if hungry() and edible:
 			saturation += area.get_nv()
@@ -107,6 +110,9 @@ func _on_Enemy_area_entered(area):
 			for substance in area.substances:
 				if substance in allergies:
 					print("killed someone because of " + substance)
+					if get_node("/root/Game/Camera2D/CanvasLayer").maze:
+						var pop = get_node("/root/Game/Camera2D/CanvasLayer/Allergy")
+						popupTimer(pop)
 					area.queue_free()
 					queue_free()
 			area.queue_free()
@@ -129,4 +135,9 @@ func _toField(vector):
 		i+=1
 	return Vector2(i, j)
 	
+func popupTimer(popup):
+	yield(get_tree().create_timer(1.0), "timeout")
+	popup.popup()
+	yield(get_tree().create_timer(1.0), "timeout")
+	popup.hide()
 

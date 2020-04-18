@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/prefab/floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/prefab/kit.tscn" type="PackedScene" id=2]
@@ -10,8 +10,8 @@
 [ext_resource path="res://src/scripts/Game.gd" type="Script" id=8]
 [ext_resource path="res://src/prefab/Enemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/prefab/register.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/prefab/micro.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/prefab/oven.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/images/noodle.png" type="Texture" id=10]
+[ext_resource path="res://src/images/Reis.png" type="Texture" id=11]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 8 )
@@ -32,7 +32,7 @@ smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 script = ExtResource( 4 )
-buildings = [ ExtResource( 6 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 7 ) ]
+buildings = [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ) ]
 
 [node name="MoneyText" type="RichTextLabel" parent="Camera2D/CanvasLayer"]
 margin_left = 24.0
@@ -117,4 +117,22 @@ __meta__ = {
 [node name="registry" parent="." instance=ExtResource( 10 )]
 position = Vector2( 1850, 750 )
 scale = Vector2( 0.5, 0.5 )
+[node name="Vegan" type="Popup" parent="Camera2D/CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Camera2D/CanvasLayer/Vegan"]
+position = Vector2( 959.889, 301.859 )
+texture = ExtResource( 10 )
+
+[node name="Allergy" type="Popup" parent="Camera2D/CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Sprite" type="Sprite" parent="Camera2D/CanvasLayer/Allergy"]
+position = Vector2( 960.046, 202.11 )
+texture = ExtResource( 11 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
