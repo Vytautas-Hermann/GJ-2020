@@ -1,22 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/scripts/title_screen.gd" type="Script" id=1]
 [ext_resource path="res://src/images/Exitbut.png" type="Texture" id=2]
 [ext_resource path="res://src/images/Startbut.png" type="Texture" id=3]
 [ext_resource path="res://src/images/Creditsbut.png" type="Texture" id=4]
 [ext_resource path="res://src/images/Titleraw.png" type="Texture" id=6]
-
-[sub_resource type="AnimatedTexture" id=1]
-flags = 4
-frame_0/texture = ExtResource( 3 )
-
-[sub_resource type="AnimatedTexture" id=2]
-flags = 4
-frame_0/texture = ExtResource( 4 )
-
-[sub_resource type="AnimatedTexture" id=3]
-flags = 4
-frame_0/texture = ExtResource( 2 )
 
 [node name="Title_Screen" type="Node2D"]
 
@@ -28,32 +16,32 @@ position = Vector2( 957.855, 540.907 )
 scale = Vector2( 0.240079, 0.238892 )
 texture = ExtResource( 6 )
 
-[node name="Button" type="TextureButton" parent="Node"]
-margin_left = 1677.29
-margin_top = 836.409
-margin_right = 1983.29
-margin_bottom = 970.409
-texture_normal = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button2" type="TextureButton" parent="Node"]
+[node name="Button" type="Button" parent="Node"]
 margin_left = 874.985
 margin_top = 622.718
-margin_right = 1180.98
-margin_bottom = 756.718
-texture_normal = SubResource( 2 )
+margin_right = 1088.98
+margin_bottom = 719.718
+icon = ExtResource( 3 )
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button3" type="TextureButton" parent="Node"]
+[node name="Button2" type="Button" parent="Node"]
+margin_left = 1677.29
+margin_top = 836.409
+margin_right = 1843.29
+margin_bottom = 911.409
+icon = ExtResource( 4 )
+expand_icon = true
+
+[node name="Button3" type="Button" parent="Node"]
 margin_left = 1504.9
 margin_top = 835.826
-margin_right = 1810.9
-margin_bottom = 969.826
-texture_normal = SubResource( 3 )
+margin_right = 1672.9
+margin_bottom = 911.826
+icon = ExtResource( 2 )
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
