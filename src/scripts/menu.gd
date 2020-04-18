@@ -215,7 +215,7 @@ func _unhandled_input(event):
 						if get_node("/root/Game/Game_Board").get("caf")[j][i] == 0:
 							if money - cost[built] > 0:
 								_change_money(-cost[built])
-								cost[built] *= 1.5
+								cost[built] *= 1.25
 								_set_maze_built()
 								var bu = buildings[built].instance()
 								bu.position = Vector2(50 + i*100, 50 + j*100)
@@ -225,7 +225,7 @@ func _unhandled_input(event):
 						if get_node("/root/Game/Game_Board").get("kitchen")[j][i] == 0:
 							if money - cost[built+1] > 0:
 								_change_money(-cost[built+1])
-								cost[built+1] *= 1.5
+								cost[built+1] *= 1.25
 								_set_kit_built()
 								var bu = buildings[built+1].instance()
 								bu.position = Vector2(50 + i*100, 1150 + j*100)
