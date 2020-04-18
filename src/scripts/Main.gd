@@ -11,7 +11,7 @@ func _ready():
 func new_game():
 	score = 0
 	$SpawnTimer.start()
-	set_respawn(0.2)
+	set_respawn(2)
 
 func _on_SpawnTimer_timeout():
 	var enemy = Enemy.instance()

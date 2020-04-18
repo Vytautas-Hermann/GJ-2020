@@ -14,6 +14,8 @@ var hunger
 var direction
 var v
 var screen_size
+var bill = 0
+var vegan = false
 
 func set_type(t):
 	type = t
@@ -23,6 +25,8 @@ func _ready():
 	for allergy in available_allergies:
 		if rand_range(0,1) < available_allergies[allergy]:
 			allergies.append(allergy)
+	if rand_range(0,1) < 0.5:
+		vegan=true
 	position = Vector2(0,400)
 	speed = rand_range(50,300)
 	screen_size = get_viewport_rect().size
@@ -84,17 +88,30 @@ func _process(delta):
 func get_tag():
 	return "enemy"
 
+func get_bill():
+	return bill
+
+func hungry():
+	if saturation > hunger:
+		return false
+	return true
+
 func _on_Enemy_area_entered(area):
 	if area.get_tag() == "bullet":
-		saturation += area.get_nv()
-		for substance in area.substances:
-			if substance in allergies:
-				print("killed someone because of " + substance)
-				area.queue_free()
-				queue_free()
-		area.queue_free()
-		if saturation > hunger:
-			queue_free()
+		var edible = true
+		if vegan:
+			if not area.vegan:
+				print("I'M VEGAN")
+				edible = false
+		if hungry() and edible:
+			saturation += area.get_nv()
+			bill += area.get_price()
+			for substance in area.substances:
+				if substance in allergies:
+					print("killed someone because of " + substance)
+					area.queue_free()
+					queue_free()
+			area.queue_free()
 	
 func _nextField0(i, j):
 	return get_node("/root/Game/Game_Board").get("caf")[i][j] == 0

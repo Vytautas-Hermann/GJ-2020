@@ -7,8 +7,11 @@ var direction
 var speed 
 var screen_size
 var type
+var price
+var vegan
 var bullets={
 	"pizza":{
+		"vegan": false,
 		"nutrition_value": 100,
 		"aerodynamical_slowfactor": 1,
 		"substances": ["lactose", "gluten"],
@@ -35,6 +38,7 @@ var bullets={
 		}
 	},
 	"rice":{
+		"vegan": false,
 		"nutrition_value": 50,
 		"aerodynamical_slowfactor": 0.75,
 		"substances": [],
@@ -61,6 +65,7 @@ var bullets={
 		}
 	},
 	"noodle":{
+		"vegan": true,
 		"nutrition_value": 75,
 		"aerodynamical_slowfactor": 0.5,
 		"substances": ["gluten"],
@@ -92,7 +97,16 @@ var bullets={
 func _ready():
 	screen_size = get_viewport_rect().size
 	$DeathTimer.start()
+	set_price(rand_range(1,100))
+	set_nv(rand_range(1,100))
 
+func set_price(p):
+	price = p
+	
+func get_price():
+	return price
+	
+	
 func set_type(t):
 	type = t
 	$CollisionShape2D.position.x = bullets[type]['collider']['position']['x']
@@ -107,6 +121,7 @@ func set_type(t):
 	substances = bullets[type]['substances']
 	nutrition_value = bullets[type]['nutrition_value']
 	aerodynamical_slowfactor = bullets[type]['aerodynamical_slowfactor']
+	vegan = bullets[type]['vegan']
 
 func set_deathTimer(t):
 	$DeathTimer.wait_time = t
@@ -116,6 +131,9 @@ func get_tag():
 
 func get_nv():
 	return nutrition_value
+	
+func set_nv(nv):
+	nutrition_value = nv
 
 func _process(delta):
 	position += direction * speed * delta * aerodynamical_slowfactor

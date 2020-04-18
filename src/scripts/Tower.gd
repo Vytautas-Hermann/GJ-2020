@@ -6,7 +6,7 @@ var reload = 1
 var type
 var bullettype
 var reach
-var multishot = 10
+var multishot = 3
 var available_bullets = []
 var towers={
 	"pizza":{
@@ -78,25 +78,33 @@ func _on_FireTimer_timeout():
 	var enemies = []
 	for area in areas:
 		if area.get_tag() == "enemy":
-			enemies.append(area)
+			if area.hungry():
+				enemies.append(area)
 	#get available bullets
 	for i in range(multishot):
 		if i < len(enemies):
 			var nv = 0
 			var enemy = enemies[i]
+			var allergic = false
 			var bullet = load(munition).instance()
 			for i in bullet.bullets:
 				available_bullets.append(i)
 			if not len(available_bullets):
 				break
-			var chosentype = null #= available_bullets[int(rand_range(0,len(available_bullets)))]
+			var chosentype = null #get available bullets (those, that are produced and theres more than 0 of them)
 			for type in available_bullets:
-				for allergy in enemy.allergies: # implement preferences (vegan)
-					if allergy in bullet.bullets[type]['substances']:
+				if enemy.vegan:
+					if not bullet.bullets[type]["vegan"]:
 						continue
-					elif bullet.bullets[type]['nutrition_value'] > nv:
-						nv =  bullet.bullets[type]['nutrition_value']
-						chosentype = type
+				for allergy in enemy.allergies:
+					if allergy in bullet.bullets[type]['substances']:
+						allergic = true
+				if allergic:
+					allergic = false
+					continue
+				if bullet.bullets[type]['nutrition_value'] > nv:
+					nv =  bullet.bullets[type]['nutrition_value']
+					chosentype = type
 			if not chosentype:
 				for type in available_bullets:
 					if bullet.bullets[type]['nutrition_value'] > nv:
