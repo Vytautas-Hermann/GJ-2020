@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Node
 
 func _ready():
 	get_node("Button").connect("pressed", self, "_on_new_game")
