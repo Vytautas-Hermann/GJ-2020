@@ -8,7 +8,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Node/MarginContainer/VBoxContainer/Score.text = str(global.score)
+	$Node/Sprite/Score.text = str(global.score)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
