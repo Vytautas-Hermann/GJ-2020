@@ -15,10 +15,9 @@ wait_time = 2.0
 [node name="MenuButton" type="MenuButton" parent="."]
 margin_left = -200.0
 margin_top = -200.0
-margin_right = -120.0
-margin_bottom = -120.0
-rect_scale = Vector2( 5, 5 )
-text = "Import"
+margin_right = -147.0
+margin_bottom = -147.0
+rect_scale = Vector2( 7.5, 7.5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

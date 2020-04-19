@@ -15,10 +15,9 @@ autostart = true
 [node name="MenuButton" type="MenuButton" parent="."]
 margin_left = -640.0
 margin_top = -640.0
-margin_right = -576.0
-margin_bottom = -576.0
-rect_scale = Vector2( 20, 20 )
-text = "Garnish"
+margin_right = -597.0
+margin_bottom = -603.0
+rect_scale = Vector2( 30, 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
