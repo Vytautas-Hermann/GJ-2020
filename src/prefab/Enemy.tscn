@@ -27,9 +27,9 @@ animations = [ {
 "name": "normal2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "normal1",
+"name": "vegan0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -37,9 +37,9 @@ animations = [ {
 "name": "vegan1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "vegan0",
+"name": "normal1",
 "speed": 5.0
 } ]
 
