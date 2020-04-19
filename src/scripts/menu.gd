@@ -19,7 +19,7 @@ export var rohName = ["Rat: %s", "Chicken: %s", "Pig: %s", "Cow: %s", "Deer: %s"
 		"Tomato sauce: %s", "Curryn sauce: %s"]
 export var roh = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var rohCost = [0.01, 0.25, 0.3, 0.35, 0.5, 0.2, 0.1, 0.15, 0.15, 0.1, 0.1, 0.2, 0.2, 0.3, 0.15, 0.2, 0.25]
-var rohNV = [1.01, 1.2, 1.3, 1.4, 1.8, 1.3, 1.1, 1.15, 1.15, 1.05, 1.05, 1.1, 1.15, 1.3, 1.2, 1.15, 1.3]
+var rohNV = [0.9, 1.2, 1.3, 1.4, 1.8, 1.3, 1.1, 1.15, 1.15, 1.05, 1.05, 1.1, 1.15, 1.3, 1.2, 1.15, 1.3]
 
 export var storage = {
 	"Chips": [],
@@ -131,19 +131,19 @@ func _update_bullet(idx, val):
 				_update_roh(6, -3*val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Chips'].append({"nv": pow(rohNV[idx], 3)*mulBeilage, "price": 1})
+				storage['Chips'].append({"nv": pow(rohNV[idx], 3)*mulBeilage, "price": 2.5})
 		if idx == 1:
 			if roh[10]>=3*val:
 				_update_roh(10, -3*val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Rice'].append({"nv": pow(rohNV[idx], 3)*mulBeilage, "price": 1})
+				storage['Rice'].append({"nv": pow(rohNV[idx], 3)*mulBeilage, "price": 2.25})
 		if idx == 2:
 			if roh[6]+roh[7]+roh[8]+roh[9]>=3*val:
 				var mul = _from_to(6,9,-3*val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Salad'].append({"nv": mul*mulBeilage, "price": 1.5})
+				storage['Salad'].append({"nv": mul*mulBeilage, "price": 2.75})
 		if idx == 3:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val && roh[5] >= val && roh[6]+roh[7]+roh[8]+roh[9] >= val && roh[11] >= val:
 				var mul = _from_to(0,4,val)
@@ -152,7 +152,7 @@ func _update_bullet(idx, val):
 				_update_roh(11, -val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Burger'].append({"nv": mul * rohNV[5] * rohNV[11]*mulGericht, "price": 4})
+				storage['Burger'].append({"nv": mul * rohNV[5] * rohNV[11]*mulGericht, "price": 6})
 		if idx == 4:
 			if roh[12]+roh[13]>=val&&roh[5]>=val&&roh[14]+roh[15]+roh[16]>=val:
 				var mul = _from_to(12,13,val)
@@ -160,7 +160,7 @@ func _update_bullet(idx, val):
 				_update_roh(5, -val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Pasta'].append({"nv": mul * rohNV[5]*mulGericht, "price": 3.5})
+				storage['Pasta'].append({"nv": mul * rohNV[5]*mulGericht, "price": 5})
 		if idx == 5:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val &&roh[6]>=val&&roh[11]>=val&&roh[14]+roh[15]+roh[16]>=val:
 				var mul = _from_to(0,4,val)
@@ -169,7 +169,7 @@ func _update_bullet(idx, val):
 				_update_roh(6, -val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Schnitzel'].append({"nv": mul * rohNV[6] * rohNV[11]*mulGericht, "price": 4.5})
+				storage['Schnitzel'].append({"nv": mul * rohNV[6] * rohNV[11]*mulGericht, "price": 6.5})
 		if idx == 6:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val &&roh[14]+roh[15]+roh[16]>=val&&roh[6]+roh[7]+roh[8]+roh[9]:
 				var mul = _from_to(0,4,val)
@@ -177,7 +177,7 @@ func _update_bullet(idx, val):
 				mul *= _from_to(14,16,val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Soup'].append({"nv": mul*mulGericht, "price": 3.5})
+				storage['Soup'].append({"nv": mul*mulGericht, "price": 4.5})
 	else:
 		bullet[idx] += val
 		bulletCount += val
