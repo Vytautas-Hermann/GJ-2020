@@ -2,13 +2,15 @@ extends Sprite
 
 var level
 var product
-var prod = ["Chips", "Rice", "Salad", "Level UP: 5", "Sell"]
+var prod = ["Chips", "Rice", "Salad"]
 
 func _ready():
 	level = 0
 	product = 0
 	_init_prod()
+	_update_upcost()
 	$Timer.start()
+	$TextureButton.connect("pressed",self,"_up")
 
 func _on_Timer_timeout():
 	get_node("/root/Game/Camera2D/CanvasLayer")._update_bullet(product, 1)
@@ -18,13 +20,14 @@ func _init_prod():
 		$MenuButton.get_popup().add_item(i)
 	$MenuButton.get_popup().connect("id_pressed", self, "_on_build_pressed")
 
+func _up():
+	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-5*pow(1.66,level)):
+		level += 1
+		_update_upcost()
+		$Timer.wait_time *= 0.75
+
+func _update_upcost():
+	$TextureButton/Cost.text = "%s" % (5*pow(1.66,level))
+
 func _on_build_pressed(id):
-	if id < 3:
-		product = id
-	elif id == 3:
-		if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-5*pow(1.66,level)):
-			level += 1
-			$MenuButton.get_popup().set_item_text(3, "Level UP: %s" % (5*pow(1.66,level)))
-			$Timer.wait_time *= 0.75
-	else:
-		pass
+	product = id
