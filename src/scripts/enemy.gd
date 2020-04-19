@@ -45,13 +45,6 @@ func _ready():
 
 
 func _process(delta):
-	var percent = 100*saturation/hunger
-	if percent > 100 :
-		percent = 100
-	var lebensanzeige = Vector2(percent/1000, 0.086)
-	$Lebensanzeige/Gruen.scale = lebensanzeige
-	
-	
 	var newPos = position + direction * delta
 	newPos += Vector2(50, 50) * direction
 	var newDirection
@@ -123,6 +116,12 @@ func _on_Enemy_area_entered(area):
 				edible = false
 		if hungry() and edible:
 			saturation += area.get_nv()
+			if not hungry():
+				$Lebensanzeige/Gruen.scale.x = 0.1
+			else:
+				var percent = 0.1*saturation/hunger
+				$Lebensanzeige/Gruen.scale.x = percent
+			
 			bill += area.get_price()
 			for substance in area.substances:
 				if substance in allergies:
