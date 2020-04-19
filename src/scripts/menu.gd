@@ -3,7 +3,7 @@ extends CanvasLayer
 var score = 0
 export var money = 200
 export var max_hunger = 5
-var health = 1
+var health = 100
 var rawCount = 0
 var bulletCount = 0
 var maze = true
@@ -123,25 +123,27 @@ func _update_roh(idx, val):
 	$RawControl/RawText.text="%s" % rawCount
 
 func _update_bullet(idx, val):
+	var mulBeilage = 2
+	var mulGericht = 3
 	if val > 0:
 		if idx == 0:
 			if roh[6]>=3*val:
 				_update_roh(6, -3*val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Chips'].append({"nv": pow(rohNV[idx], 3), "price": 1})
+				storage['Chips'].append({"nv": pow(rohNV[idx], 3)*mulBeilage, "price": 1})
 		if idx == 1:
 			if roh[10]>=3*val:
 				_update_roh(10, -3*val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Rice'].append({"nv": pow(rohNV[idx], 3), "price": 1})
+				storage['Rice'].append({"nv": pow(rohNV[idx], 3)*mulBeilage, "price": 1})
 		if idx == 2:
 			if roh[6]+roh[7]+roh[8]+roh[9]>=3*val:
 				var mul = _from_to(6,9,-3*val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Salad'].append({"nv": mul, "price": 1.5})
+				storage['Salad'].append({"nv": mul*mulBeilage, "price": 1.5})
 		if idx == 3:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val && roh[5] >= val && roh[6]+roh[7]+roh[8]+roh[9] >= val && roh[11] >= val:
 				var mul = _from_to(0,4,val)
@@ -150,7 +152,7 @@ func _update_bullet(idx, val):
 				_update_roh(11, -val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Burger'].append({"nv": mul * rohNV[5] * rohNV[11], "price": 4})
+				storage['Burger'].append({"nv": mul * rohNV[5] * rohNV[11]*mulGericht, "price": 4})
 		if idx == 4:
 			if roh[12]+roh[13]>=val&&roh[5]>=val&&roh[14]+roh[15]+roh[16]>=val:
 				var mul = _from_to(12,13,val)
@@ -158,7 +160,7 @@ func _update_bullet(idx, val):
 				_update_roh(5, -val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Pasta'].append({"nv": mul * rohNV[5], "price": 3.5})
+				storage['Pasta'].append({"nv": mul * rohNV[5]*mulGericht, "price": 3.5})
 		if idx == 5:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val &&roh[6]>=val&&roh[11]>=val&&roh[14]+roh[15]+roh[16]>=val:
 				var mul = _from_to(0,4,val)
@@ -167,7 +169,7 @@ func _update_bullet(idx, val):
 				_update_roh(6, -val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Schnitzel'].append({"nv": mul * rohNV[6] * rohNV[11], "price": 4.5})
+				storage['Schnitzel'].append({"nv": mul * rohNV[6] * rohNV[11]*mulGericht, "price": 4.5})
 		if idx == 6:
 			if roh[0]+roh[1]+roh[2]+roh[3]+roh[4] >= val &&roh[14]+roh[15]+roh[16]>=val&&roh[6]+roh[7]+roh[8]+roh[9]:
 				var mul = _from_to(0,4,val)
@@ -175,7 +177,7 @@ func _update_bullet(idx, val):
 				mul *= _from_to(14,16,val)
 				bullet[idx] += val
 				bulletCount += val
-				storage['Soup'].append({"nv": mul, "price": 3.5})
+				storage['Soup'].append({"nv": mul*mulGericht, "price": 3.5})
 	else:
 		bullet[idx] += val
 		bulletCount += val

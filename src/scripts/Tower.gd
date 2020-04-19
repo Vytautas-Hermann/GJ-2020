@@ -1,7 +1,7 @@
 extends Area2D
 
 var munition = "res://src/prefab/bullet.tscn"
-var firespeed = 250
+var firespeed = 350
 var reload = 2 
 var multishot = 1
 var reach = 20
