@@ -3,7 +3,7 @@ extends CanvasLayer
 var score = 0
 export var money = 200
 export var max_hunger = 5
-var health = 100
+var health = 1
 var rawCount = 0
 var bulletCount = 0
 var maze = true
@@ -75,6 +75,7 @@ func _decrease_health(var loss):
 	health -= loss
 	$HealthControl/HealthText.text="%s" % health
 	if health<=0:
+		global.score = score
 		get_tree().change_scene("res://src/scenes/Score.tscn")
 
 func _increase_score(var add):
