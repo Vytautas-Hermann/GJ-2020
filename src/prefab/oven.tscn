@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/images/ofen.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/oven.gd" type="Script" id=2]
+[ext_resource path="res://src/images/upgrade.png" type="Texture" id=3]
 
 [node name="oven" type="Sprite"]
 position = Vector2( 1.43051e-06, 0 )
@@ -10,13 +11,37 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
 
 [node name="MenuButton" type="MenuButton" parent="."]
 margin_left = -449.0
 margin_top = -640.0
 margin_right = -419.0
-margin_bottom = -597.0
+margin_bottom = -608.0
 rect_scale = Vector2( 30, 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = -560.625
+margin_top = 320.0
+margin_right = -224.625
+margin_bottom = 800.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="TextureButton"]
+position = Vector2( 168.188, 240 )
+scale = Vector2( 0.467188, 0.666667 )
+texture = ExtResource( 3 )
+
+[node name="Cost" type="RichTextLabel" parent="TextureButton"]
+margin_left = 336.0
+margin_right = 388.0
+margin_bottom = 21.0
+rect_scale = Vector2( 15, 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
