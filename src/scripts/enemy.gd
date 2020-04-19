@@ -46,9 +46,6 @@ func _ready():
 
 func _process(delta):
 	var percent = 100*saturation/hunger
-	print("percent %s" %percent)
-	print("hunger %s" %hunger)
-	print("saturation %s" %saturation)
 	if percent > 100 :
 		percent = 100
 	var lebensanzeige = Vector2(percent/1000, 0.086)

@@ -27,7 +27,6 @@ script = ExtResource( 8 )
 wait_time = 30.0
 
 [node name="SpawnTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="Game_Board" type="Node2D" parent="."]
 script = ExtResource( 5 )
@@ -61,7 +60,6 @@ margin_left = 24.0
 margin_top = 24.0
 margin_right = 128.0
 margin_bottom = 64.0
-hint_tooltip = "Get money from happy customers! Spend it on production, workers and upgrades"
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Test"
 __meta__ = {
@@ -107,7 +105,6 @@ margin_left = 160.0
 margin_top = 24.0
 margin_right = 256.0
 margin_bottom = 64.0
-hint_tooltip = "Health decreases with every customer leaving"
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Test"
 __meta__ = {
@@ -118,8 +115,7 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
 [node name="Sprite5" type="Sprite" parent="Camera2D/CanvasLayer/ScoreControl"]
@@ -132,7 +128,6 @@ margin_left = 288.0
 margin_top = 24.0
 margin_right = 384.0
 margin_bottom = 64.0
-hint_tooltip = "Score increases with every happy customer leaving"
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Test"
 __meta__ = {
@@ -143,8 +138,7 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
 [node name="Sprite3" type="Sprite" parent="Camera2D/CanvasLayer/BuildControl"]
@@ -157,7 +151,6 @@ margin_left = 1696.0
 margin_top = 24.0
 margin_right = 1760.0
 margin_bottom = 64.0
-hint_tooltip = "Build towers"
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -166,9 +159,6 @@ __meta__ = {
 [node name="RawControl" type="Control" parent="Camera2D/CanvasLayer"]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Sprite4" type="Sprite" parent="Camera2D/CanvasLayer/RawControl"]
 position = Vector2( 1472.62, 42.7475 )
@@ -191,7 +181,6 @@ margin_left = 1431.91
 margin_top = 34.2668
 margin_right = 1543.91
 margin_bottom = 74.2668
-hint_tooltip = "Display your ressources"
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -201,8 +190,7 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
 [node name="Sprite5" type="Sprite" parent="Camera2D/CanvasLayer/BulletControl"]
@@ -227,7 +215,6 @@ margin_left = 1568.0
 margin_top = 24.0
 margin_right = 1632.0
 margin_bottom = 64.0
-hint_tooltip = "Display your produced meals"
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -238,7 +225,6 @@ margin_left = 896.0
 margin_top = 24.0
 margin_right = 1024.0
 margin_bottom = 56.0
-hint_tooltip = "Go to other side"
 text = "Swap Location"
 __meta__ = {
 "_edit_use_anchors_": false

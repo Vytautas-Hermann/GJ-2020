@@ -61,8 +61,10 @@ scale = Vector2( 3, 3 )
 shape = SubResource( 2 )
 
 [node name="Lebensanzeige" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 0.299774
+margin_top = -8.99342
+margin_right = 40.2998
+margin_bottom = 31.0066
 __meta__ = {
 "_edit_use_anchors_": false
 }
