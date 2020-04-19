@@ -87,14 +87,12 @@ func _increase_score(var add):
 
 func _set_maze_built():
 	for child in $BuildControl/BuildMenue.get_popup().items:
-		print(child)
 		$BuildControl/BuildMenue.get_popup().remove_item(0)
 	$BuildControl/BuildMenue.get_popup().add_item("Tower: %s" % cost[0])
 	$BuildControl/BuildMenue.get_popup().connect("id_pressed", self, "_on_build_pressed")
 
 func _set_kit_built():
 	for child in $BuildControl/BuildMenue.get_popup().items:
-		print(child)
 		$BuildControl/BuildMenue.get_popup().remove_item(0)
 	$BuildControl/BuildMenue.get_popup().add_item("Side Dish: %s" % cost[1])
 	$BuildControl/BuildMenue.get_popup().add_item("Dish: %s" % cost[2])
@@ -179,6 +177,7 @@ func _update_bullet(idx, val):
 				storage['Soup'].append({"nv": mul, "price": 3.5})
 	else:
 		bullet[idx] += val
+		bulletCount += val
 	$BulletControl/Bullet.get_popup().set_item_text(idx, bulletName[idx] % bullet[idx])
 	$BulletControl/BulletText.text="%s" % bulletCount
 

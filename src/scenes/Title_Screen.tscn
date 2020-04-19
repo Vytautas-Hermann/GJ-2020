@@ -37,6 +37,7 @@ margin_left = 1520.0
 margin_top = 440.0
 margin_right = 1820.0
 margin_bottom = 520.0
+hint_tooltip = "Start the game"
 texture_normal = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -52,6 +53,7 @@ margin_left = 1520.0
 margin_top = 520.0
 margin_right = 1820.0
 margin_bottom = 600.0
+hint_tooltip = "Start the tutorial"
 texture_normal = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,6 +69,7 @@ margin_left = 1520.0
 margin_top = 600.0
 margin_right = 1820.0
 margin_bottom = 680.0
+hint_tooltip = "Go to credits"
 texture_normal = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,6 +85,7 @@ margin_left = 1520.0
 margin_top = 680.0
 margin_right = 1820.0
 margin_bottom = 760.0
+hint_tooltip = "Leaving already?"
 __meta__ = {
 "_edit_use_anchors_": false
 }

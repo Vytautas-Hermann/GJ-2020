@@ -32,6 +32,10 @@ func _ready():
 		$AnimatedSprite.set_animation("vegan"+str(int(rand_range(0,2))))
 	position = Vector2(0,400)
 	speed = rand_range(50,300)
+	if speed < 100:
+		$AnimatedSprite.scale.y *= 1.2
+	if speed > 200:
+		$AnimatedSprite.scale.y *= 0.8
 	screen_size = get_viewport_rect().size
 	var max_hunger = get_node("/root/Game/Camera2D/CanvasLayer").max_hunger
 	hunger = rand_range(max_hunger/2, max_hunger)
@@ -39,6 +43,9 @@ func _ready():
 	position = Vector2(50,850)
 	direction = Vector2(1, 0)
 	v = Vector2(speed, 1)
+	
+
+	
 
 
 func _process(delta):
@@ -84,7 +91,6 @@ func _process(delta):
 					j = nextField.y
 					newDirection = Vector2(0, -1)
 					if (newDirection != Vector2(-1,-1)*direction && !_nextField0(i,j)):
-						#print(lastDirection)
 						direction = newDirection
 						v = Vector2(-1,-speed)
 						rotation = Vector2(-1,0).angle()
@@ -114,6 +120,12 @@ func _on_Enemy_area_entered(area):
 				edible = false
 		if hungry() and edible:
 			saturation += area.get_nv()
+			if not hungry():
+				$Lebensanzeige/Gruen.scale.x = 0.1
+			else:
+				var percent = 0.1*saturation/hunger
+				$Lebensanzeige/Gruen.scale.x = percent
+			
 			bill += area.get_price()
 			for substance in area.substances:
 				if substance in allergies:
