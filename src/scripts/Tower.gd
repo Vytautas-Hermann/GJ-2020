@@ -33,8 +33,7 @@ var towers={
 		}
 	}
 }
-var prod = ["Reload: %s", "Reach: %s", "Firespeed: %s", "Multishot: %s"]
-var cost = [10, 10, 5, 30]
+var cost = [5, 10, 10, 30]
 var lvl = [0, 0, 0, 0]
 
 
@@ -43,25 +42,38 @@ func _ready():
 	$FireTimer.start()
 	set_reach(reach)
 	set_reload(reload)
-	_init_prod()
+	$UPBS.connect("pressed",self,"_upbs")
+	$UPBS/Cost.text = "%s" % (cost[0]*pow(1.66,lvl[0]))
+	$UPAS.connect("pressed",self,"_upas")
+	$UPAS/Cost.text = "%s" % (cost[1]*pow(1.66,lvl[1]))
+	$UPR.connect("pressed",self,"_upr")
+	$UPR/Cost.text = "%s" % (cost[2]*pow(1.66,lvl[2]))
+	$UPM.connect("pressed",self,"_upm")
+	$UPM/Cost.text = "%s" % (cost[3]*pow(1.66,lvl[3]))
 
-func _init_prod():
-	for i in range(0,prod.size()):
-		$MenuButton.get_popup().add_item(prod[i] % cost[i])
-	$MenuButton.get_popup().connect("id_pressed", self, "_on_build_pressed")
+func _upbs():
+	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[0]*pow(1.66,lvl[0])):
+		lvl[0] += 1
+		firespeed *= 1.25
+		$UPBS/Cost.text = "%s" % (cost[0]*pow(1.66,lvl[0]))
 
-func _on_build_pressed(id):
-	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[id]*pow(1.66,lvl[id])):
-		lvl[id] += 1
-		$MenuButton.get_popup().set_item_text(id, prod[id] % (cost[id]*pow(1.66,lvl[id])))
-		if id == 0:
-			set_reload(reload * 0.75)
-		if id == 1:
-			set_reach(reach * 1.25)
-		if id == 2:
-			firespeed *= 1.25
-		if id == 3:
-			multishot += 1
+func _upas():
+	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[1]*pow(1.66,lvl[1])):
+		lvl[1] += 1
+		set_reload(reload * 0.75)
+		$UPAS/Cost.text = "%s" % (cost[1]*pow(1.66,lvl[1]))
+
+func _upr():
+	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[2]*pow(1.66,lvl[2])):
+		lvl[2] += 1
+		set_reach(reach * 1.25)
+		$UPR/Cost.text = "%s" % (cost[2]*pow(1.66,lvl[2]))
+
+func _upm():
+	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[3]*pow(1.66,lvl[3])):
+		lvl[3] += 1
+		multishot += 1
+		$UPM/Cost.text = "%s" % (cost[3]*pow(1.66,lvl[3]))
 
 func set_reach(r):
 	reach = r

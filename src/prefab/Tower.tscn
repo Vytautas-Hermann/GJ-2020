@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/scripts/Tower.gd" type="Script" id=1]
 [ext_resource path="res://src/images/Pizzathrower.png" type="Texture" id=2]
+[ext_resource path="res://src/images/button-range.png" type="Texture" id=3]
+[ext_resource path="res://src/images/button-attackspeed.png" type="Texture" id=4]
+[ext_resource path="res://src/images/button-multishot.png" type="Texture" id=5]
+[ext_resource path="res://src/images/button-bulletspeed.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -31,11 +35,88 @@ frames = SubResource( 2 )
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="MenuButton" type="MenuButton" parent="."]
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 5.0
-rect_scale = Vector2( 2, 2 )
+[node name="UPBS" type="TextureButton" parent="."]
+margin_left = -40.0
+margin_top = -48.0
+margin_right = -16.0
+margin_bottom = -24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="UPBS"]
+position = Vector2( 12, 12 )
+scale = Vector2( 0.171429, 0.171429 )
+texture = ExtResource( 6 )
+
+[node name="Cost" type="RichTextLabel" parent="UPBS"]
+margin_left = 24.0
+margin_right = 88.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UPAS" type="TextureButton" parent="."]
+margin_left = -40.0
+margin_top = -24.0
+margin_right = -16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="UPAS"]
+position = Vector2( 12.5, 12 )
+scale = Vector2( 0.164286, 0.171429 )
+texture = ExtResource( 4 )
+
+[node name="Cost" type="RichTextLabel" parent="UPAS"]
+margin_left = 24.0
+margin_right = 88.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UPR" type="TextureButton" parent="."]
+margin_left = -40.0
+margin_right = -16.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="UPR"]
+position = Vector2( 12, 12 )
+scale = Vector2( 0.171429, 0.171429 )
+texture = ExtResource( 3 )
+
+[node name="Cost" type="RichTextLabel" parent="UPR"]
+margin_left = 24.0
+margin_right = 88.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UPM" type="TextureButton" parent="."]
+margin_left = -40.0
+margin_top = 24.0
+margin_right = -16.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="UPM"]
+position = Vector2( 12, 12 )
+scale = Vector2( 0.171429, 0.171429 )
+texture = ExtResource( 5 )
+
+[node name="Cost" type="RichTextLabel" parent="UPM"]
+margin_left = 24.0
+margin_right = 88.0
+margin_bottom = 24.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
