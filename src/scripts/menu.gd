@@ -37,7 +37,6 @@ func _ready() -> void:
 	$ScoreControl/ScoreText.text="%s" % score
 	$BulletControl/BulletText.text="%s" % bulletCount
 	$RawControl/RawText.text="%s" % rawCount
-	$MenuControl/MenuButton.get_popup().add_item("Sound on/off")
 	$MenuControl/MenuButton.get_popup().add_item("Main Menu")
 	$MenuControl/MenuButton.get_popup().connect("id_pressed", self, "_on_item_pressed")
 	$Recipe.connect("pressed", self,"_toggle")

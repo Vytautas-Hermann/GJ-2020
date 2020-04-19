@@ -53,6 +53,7 @@ texture = ExtResource( 6 )
 margin_left = 24.0
 margin_right = 88.0
 margin_bottom = 24.0
+custom_colors/default_color = Color( 0.580392, 0.203922, 0.698039, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -74,6 +75,7 @@ texture = ExtResource( 4 )
 margin_left = 24.0
 margin_right = 88.0
 margin_bottom = 24.0
+custom_colors/default_color = Color( 0.580392, 0.203922, 0.698039, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -95,6 +97,7 @@ texture = ExtResource( 3 )
 margin_left = 24.0
 margin_right = 88.0
 margin_bottom = 24.0
+custom_colors/default_color = Color( 0.580392, 0.203922, 0.698039, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -117,6 +120,7 @@ texture = ExtResource( 5 )
 margin_left = 24.0
 margin_right = 88.0
 margin_bottom = 24.0
+custom_colors/default_color = Color( 0.580392, 0.203922, 0.698039, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
