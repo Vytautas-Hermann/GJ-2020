@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/scripts/title_screen.gd" type="Script" id=1]
 [ext_resource path="res://src/images/Exitbut.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/images/Creditsbut.png" type="Texture" id=4]
 [ext_resource path="res://src/images/Tutorialbutton.png" type="Texture" id=5]
 [ext_resource path="res://src/images/Titleraw.png" type="Texture" id=6]
+[ext_resource path="res://src/sounds/Chad Crouch - Illustrated Novel.wav" type="AudioStream" id=7]
 
 [sub_resource type="ImageTexture" id=1]
 
@@ -93,3 +94,7 @@ texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 960, 540 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
