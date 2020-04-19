@@ -55,25 +55,25 @@ func _upbs():
 	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[0]*pow(1.66,lvl[0])):
 		lvl[0] += 1
 		firespeed *= 1.25
-		$UPBS/Cost.text = "%s" % (cost[0]*pow(1.66,lvl[0]))
+		$UPBS/Cost.text = "%.2f" % (cost[0]*pow(1.66,lvl[0]))
 
 func _upas():
 	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[1]*pow(1.66,lvl[1])):
 		lvl[1] += 1
 		set_reload(reload * 0.75)
-		$UPAS/Cost.text = "%s" % (cost[1]*pow(1.66,lvl[1]))
+		$UPAS/Cost.text = "%.2f" % (cost[1]*pow(1.66,lvl[1]))
 
 func _upr():
 	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[2]*pow(1.66,lvl[2])):
 		lvl[2] += 1
 		set_reach(reach * 1.25)
-		$UPR/Cost.text = "%s" % (cost[2]*pow(1.66,lvl[2]))
+		$UPR/Cost.text = "%.2f" % (cost[2]*pow(1.66,lvl[2]))
 
 func _upm():
 	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-cost[3]*pow(1.66,lvl[3])):
 		lvl[3] += 1
 		multishot += 1
-		$UPM/Cost.text = "%s" % (cost[3]*pow(1.66,lvl[3]))
+		$UPM/Cost.text = "%.2f" % (cost[3]*pow(1.66,lvl[3]))
 
 func set_reach(r):
 	reach = r

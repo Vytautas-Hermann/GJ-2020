@@ -30,7 +30,7 @@ func _up():
 		$Timer.wait_time *= 0.75
 
 func _update_upcost():
-	$TextureButton/Cost.text = "%s" % (5*pow(1.25,level))
+	$TextureButton/Cost.text = "%.2f" % (5*pow(1.25,level))
 
 func _on_build_pressed(id):
 	product = id
