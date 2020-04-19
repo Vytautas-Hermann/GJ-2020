@@ -32,12 +32,10 @@ frames = SubResource( 2 )
 wait_time = 0.5
 
 [node name="MenuButton" type="MenuButton" parent="."]
-margin_left = -40.0
-margin_top = -48.0
-margin_right = -3.0
-margin_bottom = -27.0
-rect_scale = Vector2( 3, 3 )
-text = "."
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 5.0
+rect_scale = Vector2( 2, 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
