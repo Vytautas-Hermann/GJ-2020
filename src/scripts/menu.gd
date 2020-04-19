@@ -40,10 +40,14 @@ func _ready() -> void:
 	$MenuControl/MenuButton.get_popup().add_item("Sound on/off")
 	$MenuControl/MenuButton.get_popup().add_item("Main Menu")
 	$MenuControl/MenuButton.get_popup().connect("id_pressed", self, "_on_item_pressed")
+	$Recipe.connect("pressed", self,"_toggle")
 	$Button.connect("pressed", self,"_swap")
 	_set_maze_built()
 	_init_roh()
 	_init_bullet()
+
+func _toggle():
+	$Recipe/Sprite.visible = !$Recipe/Sprite.visible
 
 func _on_item_pressed(id):
 	var item_name = $MenuControl/MenuButton.get_popup().get_item_text(id)
@@ -233,4 +237,6 @@ func _unhandled_input(event):
 								bu.position = Vector2(50 + i*100, 1150 + j*100)
 								get_node("/root/Game/Game_Board").add_child(bu)
 								get_node("/root/Game/Game_Board").get("kitchen")[j][i] = 3
-					built = -1
+		if event.button_index == BUTTON_RIGHT:
+			if event.pressed:
+				built = -1
