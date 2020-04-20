@@ -54,7 +54,7 @@ func _on_item_pressed(id):
 		_on_mainMenu()
 
 func _on_mainMenu():
-	get_tree().change_scene("res://src/scenes/Title_Screen.tscn")
+	get_tree().change_scene("res://src/scenes/Title.tscn")
 
 func _swap():
 	if maze:
