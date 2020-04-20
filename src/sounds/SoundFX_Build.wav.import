@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SoundFX_Build.wav-e87b6fe24c0977b08249960c0bb3e665.sample"
+
+[deps]
+
+source_file="res://src/sounds/SoundFX_Build.wav"
+dest_files=[ "res://.import/SoundFX_Build.wav-e87b6fe24c0977b08249960c0bb3e665.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
