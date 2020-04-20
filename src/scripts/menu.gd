@@ -79,7 +79,7 @@ func _decrease_health(var loss):
 	$HealthControl/HealthText.text="%s" % health
 	if health<=0:
 		global.score = score
-		get_tree().change_scene("res://src/scenes/Score.tscn")
+		get_tree().change_scene("res://src/scenes/GameOver.tscn")
 
 func _increase_score(var add):
 	score += add

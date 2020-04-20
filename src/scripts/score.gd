@@ -1,7 +1,10 @@
-extends VBoxContainer
+extends Node
+
+var _ignore_return_value
 
 func _ready():
-	get_node("Button").connect("pressed", self, "_back")
+	_ignore_return_value = $Back.connect("pressed", self, "_back")
+	$Score.text = str(global.score)
 
 func _back():
-	get_tree().change_scene("res://src/scenes/Title.tscn")
+	_ignore_return_value = get_tree().change_scene("res://src/scenes/Title.tscn")
