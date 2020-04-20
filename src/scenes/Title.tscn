@@ -6,7 +6,7 @@
 [ext_resource path="res://src/scripts/title_screen.gd" type="Script" id=7]
 [ext_resource path="res://src/fonts/Redkost Comic.otf" type="DynamicFontData" id=8]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 size = 57
 font_data = ExtResource( 8 )
 
@@ -34,7 +34,7 @@ margin_top = 480.0
 margin_right = 1768.0
 margin_bottom = 546.0
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.8, 0.376471, 0.32549, 1 )
 shortcut_in_tooltip = false
 text = "# Play"
@@ -49,7 +49,7 @@ margin_top = 544.0
 margin_right = 1768.0
 margin_bottom = 610.0
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.8, 0.376471, 0.32549, 1 )
 shortcut_in_tooltip = false
 text = "# Help"
@@ -64,7 +64,7 @@ margin_top = 608.0
 margin_right = 1825.0
 margin_bottom = 674.0
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.8, 0.376471, 0.32549, 1 )
 shortcut_in_tooltip = false
 text = "# Credits"
@@ -79,7 +79,7 @@ margin_top = 672.0
 margin_right = 1768.0
 margin_bottom = 738.0
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.8, 0.376471, 0.32549, 1 )
 shortcut_in_tooltip = false
 text = "# Quit"
@@ -99,7 +99,7 @@ margin_top = 1728.0
 margin_right = 1784.0
 margin_bottom = 1794.0
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.8, 0.376471, 0.32549, 1 )
 shortcut_in_tooltip = false
 text = "Back"

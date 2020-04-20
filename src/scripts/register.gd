@@ -24,7 +24,7 @@ func _on_Area2D_area_entered(area):
 		var cl = get_node("/root/Game/Camera2D/CanvasLayer")
 		if area.hungry():
 			cl._decrease_health(1)
-			$Sound.play();
+			#$Sound.play();
 		else:
 			cl._increase_score(1)
 			cl._change_money(area.bill)

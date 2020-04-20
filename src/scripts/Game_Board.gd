@@ -2,8 +2,9 @@ extends Node2D
 export (PackedScene) var path
 export (PackedScene) var table
 export (PackedScene) var kit
+export (PackedScene) var top
 
-export var caf = [[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+export var caf = [[3,3,3,3,3, 3,3,3,3,3, 3,3,3,3,3, 3,3,3,3,3],
 			[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
 			[0,0,1,1,1, 1,0,0,0,0, 0,1,1,1,1, 1,1,0,0,0],
 			[0,0,1,0,0, 1,0,0,0,0, 0,1,0,0,0, 0,1,0,0,0],
@@ -36,8 +37,12 @@ func _ready():
 				var path1 = path.instance()
 				path1.position = Vector2(x, y)
 				add_child(path1)
-			else:
+			elif j==0:
 				var table1 = table.instance()
+				table1.position = Vector2(x, y)
+				add_child(table1)
+			else:
+				var table1 = top.instance()
 				table1.position = Vector2(x, y)
 				add_child(table1)
 			x+=100
