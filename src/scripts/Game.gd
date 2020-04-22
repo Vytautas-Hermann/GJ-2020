@@ -55,12 +55,19 @@ var buildings = [["Tower", 10, "res://src/prefab/tower/Tower.tscn"],
 				 ["Production", 10, "res://src/prefab/tower/Production.tscn"],
 				 ["Import", 5, "res://src/prefab/tower/Import.tscn"]]
 
-var menu
+# enemy stat range
 var mob = "res://src/prefab/Enemy.tscn"
-var respawn = 3
-var max_hunger = 5
+var respawn = 1
+var enemy_min_speed = 50
+var enemy_max_speed = 200
+var enemy_min_hunger = 2.5
+var enemy_max_hunger = 5
+
+var menu
+var cooldown = 1
 var built = -1
-export var storage = {"Chips": [],
+
+var storage = {"Chips": [],
 					  "Rice": [],
 					  "Salad": [],
 					  "Burger": [],
@@ -69,6 +76,7 @@ export var storage = {"Chips": [],
 					  "Soup": []}
 
 func _ready():
+	$SpawnTimer.wait_time = cooldown
 	$Cooldown.start()
 
 # inits most values and text in the menu
@@ -110,7 +118,8 @@ func _update_score(value):
 	score += value
 	menu._set_score(score)
 	if not score % 15:
-		max_hunger *= 1.5
+		enemy_min_hunger *= 1.5
+		enemy_max_hunger *= 1.5
 	if not score % 30:
 		get_node("/root/Game/SpawnTimer").wait_time *= 0.75
 
@@ -200,55 +209,45 @@ func update_resource_classes(list, value):
 		_ignore_return_value = update_resources(taken_list, -value)
 	return damage
 
-
-
-func new_game():
+# the countdown for creeps starts when the cooldown runs out
+func _on_Cooldown_timeout():
 	$SpawnTimer.wait_time = respawn
 	$SpawnTimer.start()
 
-func _on_SpawnTimer_timeout():
+# spawns each time an enemy when the timer expires
+func _on_Timer_timeout():
 	var enemy = load(mob).instance()
 	enemy.rotation = Vector2(0,-1).angle()
-	add_child(enemy)
+	$Creeps.add_child(enemy)
 
-func _on_Timer_timeout():
-	_on_SpawnTimer_timeout()
+# makes the MousePosition Node follow the Mouse
+func _process(_delta):
+	$MousePosition.position = get_global_mouse_position()
 
-func _on_Cooldown_timeout():
-	new_game()
+# sets the building you want to built
+func _on_build_pressed(id):
+	built = id
 
+# handels zoom and building
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_WHEEL_UP:
 			$MousePosition/Camera2D._zoom_in()
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			$MousePosition/Camera2D._zoom_out()
+		# sets the tower on the desired field if one is choosen
 		if event.button_index == BUTTON_LEFT:
-			if built != -1:
+			if built > 0:
 				if event.pressed:
-					var x = $MousePosition.position[0]
-					var y = $MousePosition.position[1]
-					var i = 0
-					var j = 0
-					while x > 100:
-						x-=100
-						i+=1
-					while y > 100:
-						y-=100
-						j+=1
-					if get_node("/root/Game/GameBoard").get("caf")[j][i] == 0:
+					var pos = Vector2(int($MousePosition.position.x/100), int($MousePosition.position.y/100))
+					if $GameBoard.get("board")[pos.y][pos.x] == 0:
 						if update_money(-buildings[built][BUILDING_COST]):
 							buildings[built][BUILDING_COST] *= 1.25
-							var bu = load(buildings[built][BUILDING_OBJECT]).instance()
-							bu.position = Vector2(50 + i*100, 50 + j*100)
-							get_node("/root/Game/GameBoard").add_child(bu)
-							get_node("/root/Game/GameBoard").get("caf")[j][i] = 3
+							var tower = load(buildings[built][BUILDING_OBJECT]).instance()
+							tower.position = Vector2(50 + pos.x * 100, 50 + pos.y * 100)
+							$GameBoard.add_child(tower)
+							$GameBoard.get("board")[pos.y][pos.x] = 3
+		# resets the actual building you want to place to nothing
 		if event.button_index == BUTTON_RIGHT:
 			if event.pressed:
 				built = -1
-
-func _process(_delta):
-	$MousePosition.position = get_global_mouse_position()
-
-func _on_build_pressed(id):
-	built = id

@@ -9,6 +9,7 @@ var screen_size
 var type
 var price
 var vegan
+
 var bullets={
 	"Chips":{
 		"vegan": true,
@@ -155,8 +156,6 @@ func set_nv(nv):
 
 func _process(delta):
 	position += direction * speed * delta * aerodynamical_slowfactor
-
-
 
 func _on_DeathTimer_timeout():
 	queue_free()

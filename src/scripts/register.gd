@@ -10,11 +10,11 @@ func get_tag():
 
 func _on_Area2D_area_entered(area):
 	if area.get_tag() == "enemy":
-		var cl = get_node("/root/Game")
+		var rn = get_node("/root/Game")
 		if area.hungry():
-			cl._update_health(-1)
+			rn._update_health(-1)
 			#$Sound.play();
 		else:
-			cl._update_score(1)
-			cl._update_money(area.bill)
+			rn._update_score(1)
+			rn._update_money(area.bill)
 		area.queue_free()

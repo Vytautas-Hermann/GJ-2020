@@ -9,8 +9,8 @@ var rn
 # connect buttons to related functions, inits the writing of all and starts timer
 func _ready():
 	rn = get_node("/root/Game")
-	for i in rn.bullets[rn.BULLET_NAME]:
-		$MenuButton.get_popup().add_item(i)
+	for i in rn.bullets:
+		$MenuButton.get_popup().add_item(i[rn.BULLET_NAME])
 	$MenuButton.get_popup().connect("id_pressed", self, "_select_production")
 	$TextureButton/Cost.text = "%.2f" % (5*pow(1.66,level))
 	$TextureButton.connect("pressed",self,"_up")
@@ -18,7 +18,7 @@ func _ready():
 
 # produces 1 unit of the selected bullet each time the timer runs out
 func _on_Timer_timeout():
-	rn._produce_bullet(product, 1)
+	_ignore_return_value = rn.produce_bullet(product, 1)
 
 # shortens the production timer if the player has enougth money
 func _up():

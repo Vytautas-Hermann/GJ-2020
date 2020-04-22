@@ -10,5 +10,5 @@ func _zoom_in():
 
 # zoom out by 0.1, min is 1.2
 func _zoom_out():
-	if self.zoom[0] < 1.2:
+	if self.zoom[0] < 5:
 		self.zoom = self.zoom + Vector2(0.1, 0.1)
