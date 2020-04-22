@@ -1,38 +1,34 @@
 extends Sprite
 
-var level
-var product
-var prod = ["Rat", "Chicken", "Pig", "Cow", "Deer",
-		"Cheese", "Potato", "Cucumber", "Tomato", "Salad", 
-		"Rice", "Bun", "Noodle Bad", "Noodle Avg", "Hunter sauce",
-		"Tomato sauce", "Curryn sauce"]
+var _ignore_return_value
 
+var level = 0
+var product = 0
+var rn
+
+# connect buttons to related functions, inits the writing of all and starts timer
 func _ready():
-	level = 0
-	product = 0
-	_init_prod()
-	_update_upcost()
+	rn = get_node("/root/Game")
+	for i in rn.resources:
+		$MenuButton.get_popup().add_item(i[rn.RESOURCE_NAME])
+	_ignore_return_value = $MenuButton.get_popup().connect("id_pressed", self, "_select_import")
+	_ignore_return_value = $TextureButton.connect("pressed",self,"_up")
+	$TextureButton/Cost.text = "%.2f" % (5*pow(1.25,level))
 	$Timer.start()
-	$TextureButton.connect("pressed",self,"_up")
 
+# buys 1 unit of the imported product each time the timer runs out
 func _on_Timer_timeout():
-	get_node("/root/Game/Camera2D/CanvasLayer")._update_roh(product, 1)
+	_ignore_return_value = rn.buy_resource(product, 1)
 
-func _init_prod():
-	for i in prod:
-		$MenuButton.get_popup().add_item(i)
-	$MenuButton.get_popup().connect("id_pressed", self, "_on_build_pressed")
-
+# shortens the import timer if the player has enougth money
 func _up():
-	if get_node("/root/Game/Camera2D/CanvasLayer")._change_money(-5*pow(1.25,level)):
+	if rn.update_money(-5*pow(1.25,level)):
 		level += 1
-		_update_upcost()
+		$TextureButton/Cost.text = "%.2f" % (5*pow(1.25,level))
 		$Timer.wait_time *= 0.75
 
-func _update_upcost():
-	$TextureButton/Cost.text = "%.2f" % (5*pow(1.25,level))
-
-func _on_build_pressed(id):
+# changes the imported resource and picture of it
+func _select_import(id):
 	product = id
 	if id == 0:
 		$Sprite.texture = load("res://.import/rat.png-18e23395d4c5625002064d339ca77bcc.stex")
@@ -61,11 +57,8 @@ func _on_build_pressed(id):
 	if id == 12:
 		$Sprite.texture = load("res://.import/pasta.png-dae4e954950642bb36adf1108095eba9.stex")
 	if id == 13:
-		$Sprite.texture = load("res://.import/spaguetti.png-65e5cd39bc0ef66de0739d56335d4865.stex")
-	if id == 14:
 		$Sprite.texture = load("res://.import/cook.png-0cd898fa6a1d2c8ccbd6dd1d2857e089.stex")
-	if id == 15:
+	if id == 14:
 		$Sprite.texture = load("res://.import/jelly.png-8b65f49144f6e9e36b759fa167a28d48.stex")
-	if id == 16:
+	if id == 15:
 		$Sprite.texture = load("res://.import/honey.png-d7f5dae6f144aed71f1b4ecaf8a4befb.stex")
-

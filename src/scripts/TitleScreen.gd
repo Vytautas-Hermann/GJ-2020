@@ -1,6 +1,7 @@
 extends Node
 
 var _ignore_return_value
+
 var title = true
 
 func _ready():

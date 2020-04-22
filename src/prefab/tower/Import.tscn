@@ -6,6 +6,8 @@
 [ext_resource path="res://src/images/upgrade.png" type="Texture" id=4]
 [ext_resource path="res://src/sounds/SoundFX_Build.wav" type="AudioStream" id=5]
 
+
+
 [node name="Import" type="Sprite"]
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 1 )

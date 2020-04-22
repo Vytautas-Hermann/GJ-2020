@@ -1,0 +1,173 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/scripts/MenuBar.gd" type="Script" id=1]
+[ext_resource path="res://src/fonts/Redkost Comic.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/sounds/Mob_Battle_Silent_Partner.wav" type="AudioStream" id=8]
+[ext_resource path="res://src/images/Recipes.png" type="Texture" id=10]
+[ext_resource path="res://src/scripts/CameraMovement.gd" type="Script" id=16]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D"]
+current = true
+limit_left = 0
+limit_top = -64
+limit_right = 3000
+limit_bottom = 2000
+limit_smoothed = true
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+script = ExtResource( 16 )
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+z_as_relative = false
+stream = ExtResource( 8 )
+volume_db = -30.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuBar" type="Panel" parent="CanvasLayer"]
+margin_right = 1920.0
+margin_bottom = 64.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Money" type="Label" parent="CanvasLayer/MenuBar"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 128.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Label" parent="CanvasLayer/MenuBar"]
+margin_left = 144.0
+margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="CanvasLayer/MenuBar"]
+margin_left = 272.0
+margin_top = 16.0
+margin_right = 384.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Recipe" type="Button" parent="CanvasLayer/MenuBar"]
+margin_left = 840.0
+margin_top = 16.0
+margin_right = 952.0
+margin_bottom = 48.0
+text = "Toggle Recipes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/MenuBar/Recipe"]
+visible = false
+position = Vector2( -7.99996, 310.125 )
+scale = Vector2( 0.210008, 0.18823 )
+texture = ExtResource( 10 )
+
+[node name="RecourceSum" type="Label" parent="CanvasLayer/MenuBar"]
+margin_left = 1040.0
+margin_top = 16.0
+margin_right = 1152.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resources" type="MenuButton" parent="CanvasLayer/MenuBar"]
+margin_left = 1168.0
+margin_top = 16.0
+margin_right = 1318.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.945098, 0.996078, 0, 1 )
+text = "Recources"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BulletSum" type="Label" parent="CanvasLayer/MenuBar"]
+margin_left = 1344.0
+margin_top = 16.0
+margin_right = 1456.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bullets" type="MenuButton" parent="CanvasLayer/MenuBar"]
+margin_left = 1472.0
+margin_top = 16.0
+margin_right = 1589.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.945098, 0.996078, 0, 1 )
+text = "Bullets"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Build" type="MenuButton" parent="CanvasLayer/MenuBar"]
+margin_left = 1664.0
+margin_top = 16.0
+margin_right = 1776.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.945098, 0.996078, 0, 1 )
+text = "Build"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="MenuButton" parent="CanvasLayer/MenuBar"]
+margin_left = 1792.0
+margin_top = 16.0
+margin_right = 1904.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.945098, 0.996078, 0, 1 )
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -32,7 +32,7 @@ func _ready():
 		$AnimatedSprite.set_animation("vegan"+str(int(rand_range(0,2))))
 	position = Vector2(0,400)
 	speed = rand_range(50,200)
-	var max_hunger = get_node("/root/Game/Camera2D/CanvasLayer").max_hunger
+	var max_hunger = get_node("/root/Game").max_hunger
 	hunger = rand_range(max_hunger/2, max_hunger)
 	if speed < 100:
 		$AnimatedSprite.scale.y *= 1.2
@@ -140,7 +140,7 @@ func _on_Enemy_area_entered(area):
 			area.queue_free()
 	
 func _nextField0(i, j):
-	return get_node("/root/Game/Game_Board").get("caf")[i][j] != 1
+	return get_node("/root/Game/GameBoard").get("caf")[i][j] != 1
 
 		
 		

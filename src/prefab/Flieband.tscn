@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://src/images/Flieband.png" type="Texture" id=1]
-
-[node name="Flieband" type="Sprite"]
-position = Vector2( 80, 96 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 1 )
