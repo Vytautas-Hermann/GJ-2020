@@ -1,12 +1,108 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://src/images/kiste.png" type="Texture" id=1]
+[ext_resource path="res://src/images/tower/Import.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/Import.gd" type="Script" id=2]
-[ext_resource path="res://src/images/rat.png" type="Texture" id=3]
-[ext_resource path="res://src/images/upgrade.png" type="Texture" id=4]
+[ext_resource path="res://src/images/buttons/Upgrade.png" type="Texture" id=3]
+[ext_resource path="res://src/images/resources/Rat.png" type="Texture" id=4]
 [ext_resource path="res://src/sounds/SoundFX_Build.wav" type="AudioStream" id=5]
+[ext_resource path="res://src/images/resources/Salad.png" type="Texture" id=6]
+[ext_resource path="res://src/images/resources/Chicken.png" type="Texture" id=7]
+[ext_resource path="res://src/images/resources/Cow.png" type="Texture" id=8]
+[ext_resource path="res://src/images/resources/Pig.png" type="Texture" id=9]
+[ext_resource path="res://src/images/resources/Deer.png" type="Texture" id=10]
+[ext_resource path="res://src/images/resources/Cheese.png" type="Texture" id=11]
+[ext_resource path="res://src/images/resources/Tomato.png" type="Texture" id=12]
+[ext_resource path="res://src/images/resources/Cucumber.png" type="Texture" id=13]
+[ext_resource path="res://src/images/resources/Rice.png" type="Texture" id=14]
+[ext_resource path="res://src/images/resources/Bread.png" type="Texture" id=15]
+[ext_resource path="res://src/images/resources/Potatoes.png" type="Texture" id=16]
+[ext_resource path="res://src/images/resources/Honey.png" type="Texture" id=17]
+[ext_resource path="res://src/images/resources/Pasta.png" type="Texture" id=18]
+[ext_resource path="res://src/images/resources/Sauce.png" type="Texture" id=19]
+[ext_resource path="res://src/images/resources/Jelly.png" type="Texture" id=20]
 
-
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "icon8",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "icon14",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "icon2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "icon6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "icon10",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "icon12",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "icon1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "icon0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "icon13",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "icon9",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "icon7",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "icon15",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "icon11",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "icon3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "icon5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "icon4",
+"speed": 5.0
+} ]
 
 [node name="Import" type="Sprite"]
 scale = Vector2( 0.2, 0.2 )
@@ -25,9 +121,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+frames = SubResource( 1 )
+animation = "icon0"
 
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_left = -200.0
@@ -41,7 +138,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="TextureButton"]
 position = Vector2( 60, 60 )
 scale = Vector2( 0.166667, 0.166667 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="Cost" type="RichTextLabel" parent="TextureButton"]
 margin_left = 120.0
@@ -54,5 +151,4 @@ __meta__ = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
-autoplay = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

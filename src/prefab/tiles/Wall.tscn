@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/images/texturen/boden3_400d-1.png.png" type="Texture" id=1]
+[ext_resource path="res://src/images/textures/Wall1.png" type="Texture" id=1]
 
 [node name="Wall" type="Sprite"]
 scale = Vector2( 0.25, 0.25 )

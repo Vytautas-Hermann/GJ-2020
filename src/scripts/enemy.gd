@@ -8,9 +8,10 @@ var v
 var bill = 0
 var rn
 
+# inits basic values of the enemy
 func _ready():
 	rn = get_node("/root/Game")
-	$AnimatedSprite.set_animation("normal%s" % int(rand_range(0, 6)))
+	$AnimatedSprite.set_animation("enemy%s" % int(rand_range(0, 6)))
 	
 	speed = rand_range(rn.enemy_min_speed, rn.enemy_max_speed)
 	hunger = rand_range(rn.enemy_min_hunger, rn.enemy_max_hunger)
@@ -23,9 +24,34 @@ func _ready():
 	direction = Vector2(1, 0)
 	v = Vector2(speed, 1)
 
+# returns "enemy"
+func get_tag():
+	return "enemy"
+
+# returns true if saturation < hunger
+func hungry():
+	if saturation > hunger:
+		return false
+	return true
+
+# saturate player if hit by bullet
+func _on_enemy_area_entered(area):
+	if area.get_tag() == "bullet":
+		if hungry():
+			saturation += area.get_damage()
+			if not hungry():
+				$Lebensanzeige/Gruen.scale.x = 0.1
+			else:
+				var percent = 0.1*saturation/hunger
+				$Lebensanzeige/Gruen.scale.x = percent
+			bill += area.get_price()
+			area.queue_free()
+
+# moving enemy each frame
 func _process(delta):
 	position += v * delta
 
+# path finding without 20 new vars Elena :D
 func _physics_process(delta):
 	var newPos = position + direction * delta + Vector2(50, 50) * direction
 	var nextField = _to_field(newPos)
@@ -50,32 +76,10 @@ func _physics_process(delta):
 				v = Vector2(-speed, -1)
 				rotation = Vector2(0,1).angle()
 
-func get_tag():
-	return "enemy"
-
-func get_bill():
-	return bill
-
-func hungry():
-	if saturation > hunger:
-		return false
-	return true
-
-func _on_Enemy_area_entered(area):
-	if area.get_tag() == "bullet":
-		var edible = true
-		if hungry() and edible:
-			saturation += area.get_nv()
-			if not hungry():
-				$Lebensanzeige/Gruen.scale.x = 0.1
-			else:
-				var percent = 0.1*saturation/hunger
-				$Lebensanzeige/Gruen.scale.x = percent
-			
-			bill += area.get_price()
-	
+# gets the given game board field
 func _next_field(x, y):
 	return get_node("/root/Game/GameBoard").get("board")[y][x]
 
+# pictures 100px to 1 field
 func _to_field(vector):
 	return Vector2(int(vector.x/100), int(vector.y/100))

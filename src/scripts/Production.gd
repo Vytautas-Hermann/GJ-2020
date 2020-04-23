@@ -13,16 +13,16 @@ func _ready():
 		$MenuButton.get_popup().add_item(i[rn.BULLET_NAME])
 	$MenuButton.get_popup().connect("id_pressed", self, "_select_production")
 	$TextureButton/Cost.text = "%.2f" % (5*pow(1.66,level))
-	$TextureButton.connect("pressed",self,"_up")
+	_ignore_return_value = $TextureButton.connect("pressed",self,"_up")
 	$Timer.start()
 
 # produces 1 unit of the selected bullet each time the timer runs out
 func _on_Timer_timeout():
-	_ignore_return_value = rn.produce_bullet(product, 1)
+	_ignore_return_value = rn.produce_bullet(product)
 
 # shortens the production timer if the player has enougth money
 func _up():
-	if rn._update_money(-5*pow(1.66,level)):
+	if rn.update_money(-5*pow(1.66,level)):
 		level += 1
 		$TextureButton/Cost.text = "%.2f" % (5*pow(1.66,level))
 		$Timer.wait_time *= 0.75

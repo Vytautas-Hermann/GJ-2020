@@ -1,45 +1,45 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://src/images/Avatare/avatar5-1.png.png" type="Texture" id=1]
+[ext_resource path="res://src/images/enemys/Enemy1.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/Enemy.gd" type="Script" id=2]
-[ext_resource path="res://src/images/Avatare/avatar6-1.png.png" type="Texture" id=3]
-[ext_resource path="res://src/images/Avatare/avatar1-1.png.png" type="Texture" id=4]
-[ext_resource path="res://src/images/Avatare/avatar3-1.png.png" type="Texture" id=5]
-[ext_resource path="res://src/images/Avatare/avatar2-1.png.png" type="Texture" id=6]
-[ext_resource path="res://src/images/Avatare/avatar4-1.png.png" type="Texture" id=7]
-[ext_resource path="res://src/images/green.png" type="Texture" id=8]
-[ext_resource path="res://src/images/balken.png" type="Texture" id=9]
+[ext_resource path="res://src/images/miscellaneous/HungerBar.png" type="Texture" id=3]
+[ext_resource path="res://src/images/enemys/Enemy4.png" type="Texture" id=4]
+[ext_resource path="res://src/images/enemys/Enemy5.png" type="Texture" id=5]
+[ext_resource path="res://src/images/enemys/Enemy2.png" type="Texture" id=6]
+[ext_resource path="res://src/images/miscellaneous/SaturatedBar.png" type="Texture" id=7]
+[ext_resource path="res://src/images/enemys/Enemy3.png" type="Texture" id=8]
+[ext_resource path="res://src/images/enemys/Enemy6.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "normal1",
+"name": "enemy4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "enemy5",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "normal4",
+"name": "enemy0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "enemy2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "enemy1",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "normal0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "normal5",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "normal3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "normal2",
+"name": "enemy3",
 "speed": 5.0
 } ]
 
@@ -54,7 +54,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
-animation = "normal5"
+animation = "enemy0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -72,11 +72,11 @@ __meta__ = {
 [node name="Balken" type="Sprite" parent="Lebensanzeige"]
 position = Vector2( 0.143762, 0.0666218 )
 scale = Vector2( 0.0979797, 0.0857565 )
-texture = ExtResource( 9 )
+texture = ExtResource( 3 )
 
 [node name="Gruen" type="Sprite" parent="Lebensanzeige"]
 position = Vector2( -29.3358, -2.18146 )
 scale = Vector2( 1e-05, 0.086 )
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 centered = false
-[connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
+[connection signal="area_entered" from="." to="." method="_on_enemy_area_entered"]

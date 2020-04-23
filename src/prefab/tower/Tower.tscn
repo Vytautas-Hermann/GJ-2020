@@ -1,18 +1,18 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/scripts/Tower.gd" type="Script" id=1]
-[ext_resource path="res://src/images/Pizzathrower.png" type="Texture" id=2]
-[ext_resource path="res://src/images/button-range.png" type="Texture" id=3]
-[ext_resource path="res://src/images/button-attackspeed.png" type="Texture" id=4]
-[ext_resource path="res://src/images/button-multishot.png" type="Texture" id=5]
-[ext_resource path="res://src/images/button-bulletspeed.png" type="Texture" id=6]
+[ext_resource path="res://src/images/buttons/Multishoot.png" type="Texture" id=2]
+[ext_resource path="res://src/images/buttons/Range.png" type="Texture" id=3]
+[ext_resource path="res://src/images/buttons/BulletSpeed.png" type="Texture" id=4]
+[ext_resource path="res://src/images/tower/Tower.png" type="Texture" id=5]
+[ext_resource path="res://src/images/buttons/AttackSpeed.png" type="Texture" id=6]
 [ext_resource path="res://src/sounds/SoundFX_Build.wav" type="AudioStream" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -48,7 +48,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="UPBS"]
 position = Vector2( 12, 12 )
 scale = Vector2( 0.171429, 0.171429 )
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 
 [node name="Cost" type="RichTextLabel" parent="UPBS"]
 margin_left = 24.0
@@ -70,7 +70,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="UPAS"]
 position = Vector2( 12.5, 12 )
 scale = Vector2( 0.164286, 0.171429 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
 [node name="Cost" type="RichTextLabel" parent="UPAS"]
 margin_left = 24.0
@@ -115,7 +115,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="UPM"]
 position = Vector2( 12, 12 )
 scale = Vector2( 0.171429, 0.171429 )
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )
 
 [node name="Cost" type="RichTextLabel" parent="UPM"]
 margin_left = 24.0
@@ -128,5 +128,4 @@ __meta__ = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
-autoplay = true
 [connection signal="timeout" from="FireTimer" to="." method="_on_FireTimer_timeout"]

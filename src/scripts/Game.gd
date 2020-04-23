@@ -6,7 +6,8 @@ enum {RESOURCE_NAME, RESOURCE_CLASS, RESOURCE_AMOUNT, RESOURCE_COST, RESOURCE_DA
 enum {NONE, MEAT, VEGETABLE, CEREAL, SAUCE}
 enum {RESOURCE_CLASS_NAME, RESOURCE_CLASS_AMOUNT, RESOURCE_CLASS_AFFILIATED}
 enum {BULLET_NAME, BULLET_AMOUNT, BULLET_DAMAGE_FACTOR, BULLET_PRICE,
-	  BULLET_RESOURCE_COST, BULLET_RESOURCE_CLASS_COST}
+	  BULLET_RESOURCE_COST, BULLET_RESOURCE_CLASS_COST, BULLET_SPEED,
+	  BULLET_LIST}
 enum {BUILDING_NAME, BUILDING_COST, BUILDING_OBJECT}
 
 var _ignore_return_value
@@ -41,14 +42,14 @@ var resource_classes = [["None", 0, [CHEESE]],
 						["Sauce", 0, [HUNTER_SAUCE, CURRY_SAUCE, TOMATO_SAUCE]]]
 
 var bullet_sum = 0
-# BULLET_NAME, BULLET_AMOUNT, BULLET_DAMAGE_FACTOR, BULLET_PRICE, BULLET_RESOURCE_COST, BULLET_RESOURCE_CLASS_COST
-var bullets = [["Chips", 0, 2, 2.5, [[POTATO, 3]], []],
-			   ["Rice", 0, 2, 2.25, [[RICE, 3]], []],
-			   ["Salad", 0, 2, 2.75, [], [[VEGETABLE, 3]]],
-			   ["Burger", 0, 2, 6, [[CHEESE, 1], [BUN, 1]], [[MEAT, 1], [VEGETABLE, 1]]], 
-			   ["Pasta", 0, 2, 5, [[CHEESE, 1], [NOODLE, 1]], [[SAUCE, 1]]],
-			   ["Schnitzel", 0, 2, 6.5, [[BUN, 1], [POTATO, 1]], [[MEAT, 1], [SAUCE, 1]]],
-			   ["Soup", 0, 2, [], 4.5, [[MEAT, 1], [VEGETABLE, 1], [SAUCE, 1]]]]
+# BULLET_NAME, BULLET_AMOUNT, BULLET_DAMAGE_FACTOR, BULLET_PRICE, BULLET_RESOURCE_COST, BULLET_RESOURCE_CLASS_COST, BULLET_SPEED, BULLET_LIST
+var bullets = [["Chips", 0, 2, 2.5, [[POTATO, 3]], [], 0.5, []],
+			   ["Rice", 0, 2, 2.25, [[RICE, 3]], [], 0.75, []],
+			   ["Salad", 0, 2, 2.75, [], [[VEGETABLE, 3]], 0.3, []],
+			   ["Burger", 0, 2, 6, [[CHEESE, 1], [BUN, 1]], [[MEAT, 1], [VEGETABLE, 1]], 0.9, []], 
+			   ["Pasta", 0, 2, 5, [[CHEESE, 1], [NOODLE, 1]], [[SAUCE, 1]], 0.5, []],
+			   ["Schnitzel", 0, 2, 6.5, [[BUN, 1], [POTATO, 1]], [[MEAT, 1], [SAUCE, 1]], 1, []],
+			   ["Soup", 0, 2, [], 4.5, [[MEAT, 1], [VEGETABLE, 1], [SAUCE, 1]], 0.5, []]]
 
 # BUILDING_NAME, BUILDING_COST, BUILDING_OBJECT
 var buildings = [["Tower", 10, "res://src/prefab/tower/Tower.tscn"],
@@ -57,26 +58,18 @@ var buildings = [["Tower", 10, "res://src/prefab/tower/Tower.tscn"],
 
 # enemy stat range
 var mob = "res://src/prefab/Enemy.tscn"
-var respawn = 1
+var respawn = 3
 var enemy_min_speed = 50
 var enemy_max_speed = 200
 var enemy_min_hunger = 2.5
 var enemy_max_hunger = 5
 
 var menu
-var cooldown = 1
-var built = -1
-
-var storage = {"Chips": [],
-					  "Rice": [],
-					  "Salad": [],
-					  "Burger": [],
-					  "Pasta": [],
-					  "Schnitzel": [],
-					  "Soup": []}
+var cooldown = 30
+var build = -1
 
 func _ready():
-	$SpawnTimer.wait_time = cooldown
+	$Cooldown.wait_time = cooldown
 	$Cooldown.start()
 
 # inits most values and text in the menu
@@ -105,16 +98,15 @@ func update_money(value):
 		return true
 
 # adds positive/negativ values to health and updates displays
-func _update_health(value):
+func _update_health(value = -1):
 	health += value
 	if health <= 0:
 		global.score = score
 		_ignore_return_value = get_tree().change_scene("res://src/scenes/GameOver.tscn")
-	else:
-		menu._set_health(health)
+	menu._set_health(health)
 
 # adds positive/negativ values to score and updates displays
-func _update_score(value):
+func _update_score(value = 1):
 	score += value
 	menu._set_score(score)
 	if not score % 15:
@@ -139,7 +131,7 @@ func update_resource(index, value):
 # buys given recource value-times for it's cost
 # returns false if the player hasn't enought money
 # atm the function can sell resources for the same cost if the value is negativ
-func buy_resource(index, value):
+func buy_resource(index, value = 1):
 	if update_money(-value * resources[index][RESOURCE_COST]):
 		return update_resource(index, value)
 	else:
@@ -148,14 +140,14 @@ func buy_resource(index, value):
 # creates a given bullet value-times for it's resources
 # if there aren't enougth resources no bullets will be created
 # then the function will return false otherwise true
-func produce_bullet(index, value):
+func produce_bullet(index, value = 1):
 	var damage = update_resources(bullets[index][BULLET_RESOURCE_COST], value)
 	if damage > 0:
 		damage *= update_resource_classes(bullets[index][BULLET_RESOURCE_CLASS_COST], value)
 		if damage > 0:
 			bullet_sum += value
 			bullets[index][BULLET_AMOUNT] += value
-			storage[bullets[index][BULLET_NAME]].append({"nv": damage * bullets[index][BULLET_DAMAGE_FACTOR], "price": bullets[index][BULLET_PRICE]})
+			bullets[index][BULLET_LIST].append(damage * bullets[index][BULLET_DAMAGE_FACTOR])
 			menu._set_bullet_sum(bullet_sum)
 			menu._set_bullet(index, bullets[index][BULLET_NAME], bullets[index][BULLET_AMOUNT])
 			return true
@@ -175,7 +167,7 @@ func update_resources(list, value):
 		if !fail:
 			# we take all resources directly if we miss one we can't create whatever
 			# so if we fail we don't take any other resources and afterwards put back what we have taken
-			if !update_resource(i[0], i[1] * value):
+			if !update_resource(i[0], -i[1] * value):
 				damage *= 0
 				fail = true
 			else:
@@ -209,6 +201,28 @@ func update_resource_classes(list, value):
 		_ignore_return_value = update_resources(taken_list, -value)
 	return damage
 
+# removes the first value-times bullets of the given type and updates displays
+# returns true if bullet was available
+func update_bullet(index, value):
+	if bullets[index][BULLET_AMOUNT] + value >= 0:
+		bullet_sum += value
+		bullets[index][BULLET_AMOUNT] += value
+		menu._set_bullet_sum(bullet_sum)
+		menu._set_bullet(index, bullets[index][BULLET_NAME], bullets[index][BULLET_AMOUNT])
+		return true
+	return false
+
+# returns a list of bullets in style [type, damage] if there are enougth
+func shoot_bullet(value = 1):
+	var magazin = []
+	for i in range(0, bullets.size()):
+		if update_bullet(i, -value):
+			for _i in range(0, value):
+				magazin.append([i, bullets[i][BULLET_LIST][0], bullets[i][BULLET_SPEED], bullets[i][BULLET_PRICE]])
+				bullets[i][BULLET_LIST].remove(0)
+			return magazin
+	return []
+
 # the countdown for creeps starts when the cooldown runs out
 func _on_Cooldown_timeout():
 	$SpawnTimer.wait_time = respawn
@@ -221,12 +235,12 @@ func _on_Timer_timeout():
 	$Creeps.add_child(enemy)
 
 # makes the MousePosition Node follow the Mouse
-func _process(_delta):
+func _physics_process(_delta):
 	$MousePosition.position = get_global_mouse_position()
 
-# sets the building you want to built
+# sets the building you want to build
 func _on_build_pressed(id):
-	built = id
+	build = id
 
 # handels zoom and building
 func _unhandled_input(event):
@@ -237,17 +251,18 @@ func _unhandled_input(event):
 			$MousePosition/Camera2D._zoom_out()
 		# sets the tower on the desired field if one is choosen
 		if event.button_index == BUTTON_LEFT:
-			if built > 0:
+			if build >= 0:
 				if event.pressed:
 					var pos = Vector2(int($MousePosition.position.x/100), int($MousePosition.position.y/100))
 					if $GameBoard.get("board")[pos.y][pos.x] == 0:
-						if update_money(-buildings[built][BUILDING_COST]):
-							buildings[built][BUILDING_COST] *= 1.25
-							var tower = load(buildings[built][BUILDING_OBJECT]).instance()
+						if update_money(-buildings[build][BUILDING_COST]):
+							buildings[build][BUILDING_COST] *= 1.25
+							menu._set_build_cost(build, buildings[build][BUILDING_NAME], buildings[build][BUILDING_COST])
+							var tower = load(buildings[build][BUILDING_OBJECT]).instance()
 							tower.position = Vector2(50 + pos.x * 100, 50 + pos.y * 100)
 							$GameBoard.add_child(tower)
 							$GameBoard.get("board")[pos.y][pos.x] = 3
 		# resets the actual building you want to place to nothing
 		if event.button_index == BUTTON_RIGHT:
 			if event.pressed:
-				built = -1
+				build = -1

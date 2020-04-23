@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/scripts/MenuBar.gd" type="Script" id=1]
 [ext_resource path="res://src/fonts/Redkost Comic.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/images/miscellaneous/Recipes.png" type="Texture" id=3]
 [ext_resource path="res://src/sounds/Mob_Battle_Silent_Partner.wav" type="AudioStream" id=8]
-[ext_resource path="res://src/images/Recipes.png" type="Texture" id=10]
 [ext_resource path="res://src/scripts/CameraMovement.gd" type="Script" id=16]
 
 [sub_resource type="DynamicFont" id=1]
@@ -94,7 +94,7 @@ __meta__ = {
 visible = false
 position = Vector2( -7.99996, 310.125 )
 scale = Vector2( 0.210008, 0.18823 )
-texture = ExtResource( 10 )
+texture = ExtResource( 3 )
 
 [node name="RecourceSum" type="Label" parent="CanvasLayer/MenuBar"]
 margin_left = 1040.0

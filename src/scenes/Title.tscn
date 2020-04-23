@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/images/Credits.png" type="Texture" id=1]
+[ext_resource path="res://src/images/miscellaneous/Credits.png" type="Texture" id=1]
+[ext_resource path="res://src/images/miscellaneous/TitleScreen.png" type="Texture" id=2]
 [ext_resource path="res://src/sounds/Chad Crouch - Illustrated Novel.wav" type="AudioStream" id=3]
-[ext_resource path="res://src/images/Titleraw.png" type="Texture" id=6]
 [ext_resource path="res://src/scripts/TitleScreen.gd" type="Script" id=7]
 [ext_resource path="res://src/fonts/Redkost Comic.otf" type="DynamicFontData" id=8]
 
@@ -25,7 +25,7 @@ volume_db = -25.0
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
 scale = Vector2( 0.240079, 0.240167 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="Play" type="Button" parent="."]
 margin_left = 1560.0
